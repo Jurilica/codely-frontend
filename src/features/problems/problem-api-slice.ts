@@ -1,12 +1,9 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-const API_URL = "https://localhost:44395/";
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { baseQueryWithErrorHandling } from '../../app/api';
 
 export const problemApiSlice = createApi({
     reducerPath: 'api',
-    baseQuery : fetchBaseQuery({
-        baseUrl: API_URL
-    }),
+    baseQuery : baseQueryWithErrorHandling,
     endpoints(builder) {
         return {
             getProblems: builder.query<GetProblemsResponse, void>({
@@ -34,7 +31,7 @@ export interface CreateProblemRequest {
 }
 
 export interface CreateProblemResponse {
-    id: number;
+    problemId: number;
 }
 
 export interface GetProblemsResponse {
@@ -67,3 +64,4 @@ export enum ProblemStatus {
     Published = "Published",
     Unpublished = "Unpublished"
 }
+
