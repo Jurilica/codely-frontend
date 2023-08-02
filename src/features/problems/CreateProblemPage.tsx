@@ -19,7 +19,6 @@ function CreateProblemPage() {
         }
     },[result.isSuccess]);
 
-
     return (
         <Formik initialValues={{title: '', description: ''}} 
             onSubmit={(values) => handleSubmit(values)}>
