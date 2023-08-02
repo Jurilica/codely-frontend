@@ -2,7 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQueryWithErrorHandling } from '../../app/api';
 
 export const problemApiSlice = createApi({
-    reducerPath: 'api',
+    reducerPath: 'problemApi',
     baseQuery : baseQueryWithErrorHandling,
     endpoints(builder) {
         return {
