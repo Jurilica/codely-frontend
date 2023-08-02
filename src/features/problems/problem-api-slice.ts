@@ -12,6 +12,12 @@ export const problemApiSlice = createApi({
                     method: "GET"
                 })
             }),
+            getProblem: builder.query<GetProblemResponse, string>({
+                query: (id) => ({
+                    url: `admin/problems/${id}`,
+                    method: "GET"
+                })
+            }), 
             addProblem: builder.mutation<CreateProblemResponse, CreateProblemRequest>({
                 query: (problem) => ({
                     url: "admin/problems",
@@ -23,7 +29,7 @@ export const problemApiSlice = createApi({
     }
 });
 
-export const {useAddProblemMutation, useGetProblemsQuery} = problemApiSlice;
+export const {useAddProblemMutation, useGetProblemsQuery, useGetProblemQuery} = problemApiSlice;
 
 export interface CreateProblemRequest {
     title: string;
@@ -39,6 +45,17 @@ export interface GetProblemsResponse {
 }
 
 export interface GetProblemsData {
+    id: number;
+    title: string;
+    description: string;
+    problemStatus: ProblemStatus;
+}
+
+export interface GetProblemResponse {
+    problem: GetProblemData;
+}
+
+export interface GetProblemData {
     id: number;
     title: string;
     description: string;

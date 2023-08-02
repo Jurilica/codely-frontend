@@ -1,10 +1,15 @@
-import CreateProblem from './features/problems/CreateProblem';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CreateProblemPage from './features/problems/CreateProblemPage';
+import EditProblemPage from './features/problems/EditProblemPage';
 
 function App() {
   return (
-    <div className="App">
-        <CreateProblem/>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<CreateProblemPage/>} />
+        <Route path="/problems/:id" element={<EditProblemPage/>} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

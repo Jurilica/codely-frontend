@@ -25,10 +25,9 @@ export const baseQueryWithErrorHandling: BaseQueryFn<
                 let errorData = result.error.data as ErrorData;
                 errorMessage = errorData.Message;
                 break;
-            default: errorMessage = "Network message";
+            default: errorMessage = "Network issue";
         }
 
-        console.log(errorMessage);
         toast.error(errorMessage);
     }
 
