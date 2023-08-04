@@ -20,8 +20,8 @@ function ProblemsPage() {
     const handleCloseAddProblemModal = () => setOpenAddProblemModal(false);
 
     const handleOpenDeleteProblemModal = (id:number) => {
-        setOpenDeleteProblemModal(true);
         setProblemId(id);
+        setOpenDeleteProblemModal(true);
     }
 
     const handleCloseDeleteProblemModal = () => setOpenDeleteProblemModal(false);

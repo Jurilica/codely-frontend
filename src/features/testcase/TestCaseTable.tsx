@@ -1,4 +1,4 @@
-import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination } from "@mui/material";
+import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, Button } from "@mui/material";
 import { useState } from "react";
 import { TestCaseData } from "../../app/admin-api-slice";
 import { Column } from "../../app/models";
@@ -6,13 +6,18 @@ import { Column } from "../../app/models";
 const columns: Column[] = [
     { id: 'id', label: 'Id', minWidth: 50 },
     { id: 'input', label: 'Input', minWidth: 100 },
-    { id: 'output', label: 'Output', minWidth: 100 }
+    { id: 'output', label: 'Output', minWidth: 100 },
+    { id: 'edit', label: 'Edit', minWidth: 100 },
+    { id: 'delete', label: 'Delete', minWidth: 100 }
+
   ];
 
 interface TestCaseTableProps {
     data: TestCaseData[];
+    handleOpenUpdateTestCaseModal: (id: number) => void;
+    handleOpenDeleteTestCaseModal: (id: number) => void;
 } 
-export default function TestCaseTable({data}: TestCaseTableProps) {
+export default function TestCaseTable({data, handleOpenUpdateTestCaseModal, handleOpenDeleteTestCaseModal}: TestCaseTableProps) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -47,7 +52,7 @@ export default function TestCaseTable({data}: TestCaseTableProps) {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow hover tabIndex={-1} key={row.id}>
+                   <TableRow hover tabIndex={-1} key={row.id}>
                     <TableCell>
                       {row.id}
                     </TableCell>
@@ -56,6 +61,12 @@ export default function TestCaseTable({data}: TestCaseTableProps) {
                     </TableCell>
                     <TableCell>
                       {row.output}
+                    </TableCell>
+                    <TableCell>
+                        <Button onClick={() => {handleOpenUpdateTestCaseModal(row.id)}}>Edit</Button>
+                    </TableCell>
+                    <TableCell>
+                        <Button onClick={() => {handleOpenDeleteTestCaseModal(row.id)}}>Delete</Button>
                     </TableCell>
                   </TableRow>
                 );

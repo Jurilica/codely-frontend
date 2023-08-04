@@ -32,8 +32,7 @@ export const adminApiSlice = createApi({
             archiveProblem: builder.mutation<ArchiveProblemResponse, string>({
                 query: (id) => ({
                     url: `admin/problems/${id}`,
-                    method: "DELETE",
-                    providesTags: ['Problem']
+                    method: "DELETE"
                 }),
                 invalidatesTags:['Problem']
             }),
@@ -44,7 +43,22 @@ export const adminApiSlice = createApi({
                     body: testCase
                 }),
                 invalidatesTags:['TestCase']
-            }) 
+            }),
+            updateTestCase : builder.mutation<UpdateTestCaseResponse, UpdateTestCaseRequest>({
+                query: (testCase) => ({
+                    url: "admin/test-cases",
+                    method: "PUT",
+                    body: testCase
+                }),
+                invalidatesTags:['TestCase']
+            }),
+            archiveTestCase: builder.mutation<ArchiveProblemResponse, string>({
+                query: (id) => ({
+                    url: `admin/test-cases/${id}`,
+                    method: "DELETE"
+                }),
+                invalidatesTags:['TestCase']
+            }),
         }
     }
 });
@@ -54,7 +68,9 @@ export const {
     useGetProblemsQuery, 
     useGetProblemQuery, 
     useArchiveProblemMutation,
-    useAddTestCaseMutation} = adminApiSlice;
+    useAddTestCaseMutation,
+    useUpdateTestCaseMutation,
+    useArchiveTestCaseMutation} = adminApiSlice;
 
 export interface CreateProblemRequest {
     title: string;
@@ -119,5 +135,18 @@ export interface CreateTestCaseRequest {
 export interface CreateTestCaseResponse {
     testCaseId: number;
 }
+
+export interface UpdateTestCaseRequest {
+    testCaseId: number;
+    input: string;
+    output: string;
+}
+
+export interface UpdateTestCaseResponse {
+}
+
+export interface ArchiveTestCaseResponse {
+}
+
 
 

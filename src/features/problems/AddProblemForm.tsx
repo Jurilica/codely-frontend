@@ -19,7 +19,6 @@ function AddProblemForm({handleClose}:CreateProblemFormProps) {
         };
 
         addProblem(createProblemRequest);
-       
     };
 
     useEffect(() => {
