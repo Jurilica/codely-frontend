@@ -1,18 +1,16 @@
 import { Stack, Typography, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Button, Link, Paper, TablePagination, Grid } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link as RouterLink} from "react-router-dom";
-import { toast } from "react-toastify";
-import { ProblemStatus, useArchiveProblemMutation, GetProblemsData } from "../../app/admin-api-slice";
+import { ProblemStatus, GetProblemsData } from "../../app/admin-api-slice";
 import Dot from "../../components/generic/Dot";
 import { Column } from "../../app/models";
-import CodelyModal from "../../components/modal/CodelyModal";
-import CodelyConfirmationModal from "../../components/modal/CodelyConfirmationModal";
 
 const columns : Column[] = [
     {id:"1", label: "Id"},
     {id:"2", label: "Title"},
     {id:"3", label: "Status"},
-    {id:"4", label: "Delete"}
+    {id:"4", label: "Edit"},
+    {id:"5", label: "Delete"}
 ];
 
 const ProblemStatusComponent = ({status}: {status: ProblemStatus}) => {
@@ -27,9 +25,10 @@ const ProblemStatusComponent = ({status}: {status: ProblemStatus}) => {
 interface ProblemsTableData {
     data: GetProblemsData[];
     handleOpenDeleteProblemModal: (id:number) => void;
+    handleOpenUpdateProblemModal: (id:number) => void;
 }
 
-function ProblemsTable({data, handleOpenDeleteProblemModal}:ProblemsTableData) {
+function ProblemsTable({data, handleOpenDeleteProblemModal, handleOpenUpdateProblemModal}:ProblemsTableData) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
   
@@ -72,7 +71,10 @@ function ProblemsTable({data, handleOpenDeleteProblemModal}:ProblemsTableData) {
                             </TableCell>
                             <TableCell align="left">{row.title}</TableCell>
                             <TableCell align="left">
-                                    <ProblemStatusComponent status={row.problemStatus}/>
+                                <ProblemStatusComponent status={row.problemStatus}/>
+                            </TableCell>
+                            <TableCell align="left">
+                                <Button onClick={() => {handleOpenUpdateProblemModal(row.id)}}>Edit</Button>
                             </TableCell>
                             <TableCell align="left">
                                 <Button onClick={() => {handleOpenDeleteProblemModal(row.id)}}>Delete</Button>

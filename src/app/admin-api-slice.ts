@@ -29,6 +29,14 @@ export const adminApiSlice = createApi({
                 }),
                 invalidatesTags:['Problem']
             }),
+            updateProblem : builder.mutation<UpdateProblemResponse, UpdateProblemRequest>({
+                query: (problem) => ({
+                    url: "admin/problems",
+                    method: "PUT",
+                    body: problem
+                }),
+                invalidatesTags:['Problem']
+            }),
             archiveProblem: builder.mutation<ArchiveProblemResponse, string>({
                 query: (id) => ({
                     url: `admin/problems/${id}`,
@@ -65,6 +73,7 @@ export const adminApiSlice = createApi({
 
 export const {
     useAddProblemMutation, 
+    useUpdateProblemMutation,
     useGetProblemsQuery, 
     useGetProblemQuery, 
     useArchiveProblemMutation,
@@ -79,6 +88,17 @@ export interface CreateProblemRequest {
 
 export interface CreateProblemResponse {
     problemId: number;
+}
+
+export interface UpdateProblemRequest {
+    problemId: number;
+    title: string;
+    description: string;
+}
+
+export interface UpdateProblemResponse {
+    title: string;
+    description: string;
 }
 
 export interface GetProblemsResponse {

@@ -7,12 +7,14 @@ import AddProblemForm from './AddProblemForm';
 import { useArchiveProblemMutation, useGetProblemsQuery } from '../../app/admin-api-slice';
 import { toast } from 'react-toastify';
 import CodelyConfirmationModal from '../../components/modal/CodelyConfirmationModal';
+import UpdateProblemForm from './UpdateProblemForm';
 
 function ProblemsPage() {
     const {data, isLoading, isSuccess} = useGetProblemsQuery();
     const [archiveProblem, result] = useArchiveProblemMutation();
 
     const [openAddProblemModal, setOpenAddProblemModal] = useState(false);
+    const [openUpdateProblemModal, setOpenUpdateProblemModal] = useState(false);
     const [openDeleteProblemModal, setOpenDeleteProblemModal] = useState(false);
     const [problemId, setProblemId] = useState(0);
 
@@ -30,6 +32,13 @@ function ProblemsPage() {
         archiveProblem(problemId.toString());
         handleCloseDeleteProblemModal();
     };
+
+    const handleOpenUpateProblemModal = (id:number) => {
+        setProblemId(id);
+        setOpenUpdateProblemModal(true);
+    }
+
+    const handleCloseUpdateProblemModal = () => setOpenUpdateProblemModal(false);
 
     useEffect(() => {
         if(result.isSuccess){
@@ -49,13 +58,19 @@ function ProblemsPage() {
                 </Grid>
             </Grid>
             <Card sx={{ mt: 2 }}>
-               {isSuccess && <ProblemsTable data={data.problems} handleOpenDeleteProblemModal={handleOpenDeleteProblemModal}/>}
+               {isSuccess && <ProblemsTable data={data.problems} handleOpenDeleteProblemModal={handleOpenDeleteProblemModal} handleOpenUpdateProblemModal={handleOpenUpateProblemModal}/>}
             </Card>
             <CodelyModal  
                 isOpen={openAddProblemModal}
                 onClose={handleCloseAddProblemModal}
             >
-                <AddProblemForm handleClose={handleOpenAddProblemModal}/>
+                <AddProblemForm handleClose={handleCloseAddProblemModal}/>
+            </CodelyModal>
+            <CodelyModal  
+                isOpen={openUpdateProblemModal}
+                onClose={handleCloseUpdateProblemModal}
+            >
+                <UpdateProblemForm handleClose={handleCloseUpdateProblemModal} problem={data?.problems.find(x => x.id == problemId)!}/>
             </CodelyModal>
             <CodelyConfirmationModal 
                 isOpen={openDeleteProblemModal} 
