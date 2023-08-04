@@ -1,11 +1,11 @@
-import { Button, Card, Grid, Typography } from "@mui/material";
-import { useArchiveProblemMutation, useGetProblemsQuery } from "../../app/admin-api-slice";
-import Loader from "../../components/loader/Loader";
-import ProblemsTable from "../../components/problems/ProblemsTable";
-import { useEffect, useState } from "react";
-import CodelyModal from "../../components/modal/CodelyModal";
-import AddProblemForm from "./AddProblemForm";
-import { toast } from "react-toastify";
+import { Button, Card, Grid, Typography } from '@mui/material';
+import { useArchiveProblemMutation, useGetProblemsQuery } from '../../app/admin-api-slice';
+import Loader from '../../components/loader/Loader';
+import ProblemsTable from '../../components/problems/ProblemsTable';
+import { useEffect, useState } from 'react';
+import CodelyModal from '../../components/modal/CodelyModal';
+import AddProblemForm from './AddProblemForm';
+import { toast } from 'react-toastify';
 
 function ProblemsPage() {
     const {data, isLoading, isSuccess} = useGetProblemsQuery();
