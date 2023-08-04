@@ -1,15 +1,19 @@
-import { Grid, Button } from "@mui/material";
-import { Field, Form, Formik } from "formik";
-import CodelyTextField from "../../components/form/CodelyTextField";
-import { CreateTestCaseRequest, useAddTestCaseMutation } from "./testcase-api-slice";
+import { Grid, Typography } from "@mui/material";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
-import TestCaseForm, { TestCaseData } from "../../components/testcase/TestCaseForm";
+import TestCaseForm, { TestCaseFormData } from "../../components/testcase/TestCaseForm";
+import { CreateTestCaseRequest, TestCaseData, useAddTestCaseMutation } from "../../app/admin-api-slice";
 
-function AddTestCaseForm({problemId, handleClose }: {problemId:number, handleClose:() => void}) {
+interface AddTestCaseFormProps {
+    problemId: number;
+    handleClose: () => void;
+    addToList: (testCase: TestCaseData) => void;
+}
+
+function AddTestCaseForm({problemId, handleClose, addToList }: AddTestCaseFormProps) {
     const [addTestCase, result] = useAddTestCaseMutation();
 
-    function handleSubmit(values: TestCaseData) {
+    function handleSubmit(values: TestCaseFormData) {
         var createTestCaseRequest: CreateTestCaseRequest = {
             problemId: problemId,
             ...values
@@ -21,12 +25,34 @@ function AddTestCaseForm({problemId, handleClose }: {problemId:number, handleClo
     useEffect(() => {
         if(result.isSuccess) {
             toast.success("TestCase added");
+
+            let testCase:TestCaseData = {
+                id: result.data.testCaseId,
+                input: result.originalArgs?.input!,
+                output: result.originalArgs?.output!
+            }
+            
+            addToList(testCase);
             handleClose();
         }
     },[result.isSuccess])
 
     return (
-      <TestCaseForm handleSubmit={handleSubmit} initialValues={{input:"", output:""}} />
+        <Grid 
+            container
+            spacing={1} 
+            alignItems="center" 
+            justifyContent="center"
+            direction="column"
+            >
+            <Grid item>
+                <Typography variant="h4" component="h4">Create test case</Typography>
+            </Grid>
+            <Grid item>
+                <TestCaseForm handleSubmit={handleSubmit} initialValues={{input:"", output:""}} />
+            </Grid>
+        </Grid>
+      
     );
 }
 

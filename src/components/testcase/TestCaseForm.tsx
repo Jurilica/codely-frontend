@@ -2,14 +2,14 @@ import { Button, Grid } from "@mui/material";
 import { Field, Form, Formik } from "formik";
 import CodelyTextField from "../form/CodelyTextField";
 
-export interface TestCaseData {
+export interface TestCaseFormData {
     input: string;
     output: string;
 }
 
 interface TestCaseFormProps {
-    handleSubmit: (values: TestCaseData) => void;
-    initialValues: TestCaseData;
+    handleSubmit: (values: TestCaseFormData) => void;
+    initialValues: TestCaseFormData;
 }
 
 function TestCaseForm({handleSubmit, initialValues}:TestCaseFormProps) {

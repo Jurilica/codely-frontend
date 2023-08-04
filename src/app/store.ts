@@ -1,15 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { problemApiSlice } from '../features/problems/problem-api-slice';
-import { testcaseApiSlice } from '../features/testcase/testcase-api-slice';
+import { adminApiSlice } from './admin-api-slice';
 
 export const store = configureStore({
     reducer: {
-        [problemApiSlice.reducerPath]: problemApiSlice.reducer,
-        [testcaseApiSlice.reducerPath]: testcaseApiSlice.reducer
+        [adminApiSlice.reducerPath]: adminApiSlice.reducer,
     },
     middleware: (getDefaultMiddleware) => {
         return getDefaultMiddleware()
-          .concat(problemApiSlice.middleware, testcaseApiSlice.middleware)
+          .concat(adminApiSlice.middleware)
     }
 });
 

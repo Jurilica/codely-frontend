@@ -1,44 +1,77 @@
-import { Box, Button, Grid, Modal } from '@mui/material';
-import { useGetProblemQuery } from './problem-api-slice';
+import { Button, Grid, Typography } from '@mui/material';
+import { TestCaseData, useGetProblemQuery } from '../../app/admin-api-slice';
 import { useParams } from 'react-router';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddTestCaseForm from '../testcase/AddTestCaseForm';
-
-const modalStyle = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
+import CodelyModal from '../../components/modal/CodelyModal';
+import Loader from '../../components/loader/Loader';
 
 function EditProblemPage() {
     let {id} = useParams();
     const {data,isLoading, isSuccess } = useGetProblemQuery(id!);
-
     const [openAddTestCaseModal, setOpenAddTestCaseModal] = useState(false);
 
+    const [testCases, setTestCases] = useState<TestCaseData[]>([]);
+
+    useEffect(() =>{
+        if(isSuccess){
+            setTestCases(data?.problem.testCases!);
+        }
+    },[isSuccess]);
+
     const handleOpen = () => setOpenAddTestCaseModal(true);
-    const handleClose = () => setOpenAddTestCaseModal(false);
+    const handleClose= () => setOpenAddTestCaseModal(false);
+
+    const addToList = (newTestCase: TestCaseData) => {
+        console.log(newTestCase);
+        setTestCases(oldValues => [...oldValues, newTestCase]);
+    };
 
     return (
-        <>
-            {isLoading && <div>Loading</div>}
-            {isSuccess && <div> {data.problem.title} </div>}
-            <Button onClick={handleOpen}>Add test case</Button>
-            <Modal  
-                open={openAddTestCaseModal}
+        <Grid container>
+            <Loader isLoading={isLoading} />
+            <CodelyModal  
+                isOpen={openAddTestCaseModal}
                 onClose={handleClose}
-                >
-                    <Box sx={modalStyle}> 
-                        <AddTestCaseForm problemId={Number(id)} handleClose={handleClose}/>
-                    </Box>
-            </Modal>
-        </>
+            >
+                <AddTestCaseForm problemId={Number(id)} handleClose={handleClose} addToList={addToList}/>
+            </CodelyModal>
+            <Grid item xs={12} lg={6}>
+                <Grid container direction="column" spacing={2}>
+                    <Grid item>
+                    {data?.problem.id}. {data?.problem.title}
+                    </Grid>
+                    <Grid item>
+                        {data?.problem.description}
+                    </Grid>
+                    <Grid item>
+                        {data?.problem.examples.map((example,index) =>
+                            <Grid>
+                                <Typography>Example {index+1}:</Typography>
+                                <Grid>
+                                    Input: {example.input}
+                                    Output: {example.output}
+                                    Explanation: {example.explanation}
+                                </Grid>
+                            </Grid>)}
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid item xs={12} lg={6}>
+                <Grid container direction="column" spacing={2}>
+                    <Button onClick={handleOpen}>Add test case</Button>
+                    <Grid item>
+                        {data?.problem.testCases.map((testCase) =>
+                            <Grid key={testCase.id}>
+                                <Grid>
+                                    Input: {testCase.input}
+                                    Output: {testCase.output}
+                                </Grid>
+                            </Grid>)}
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
     );
 }
 
