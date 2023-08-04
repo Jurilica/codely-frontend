@@ -1,6 +1,6 @@
 import { Button, Grid } from "@mui/material";
 import { Field, Form, Formik } from "formik";
-import CodelyTextField from "../form/CodelyTextField";
+import CodelyTextField from "../../components/form/CodelyTextField";
 
 export interface ProblemData {
     title: string;

@@ -7,10 +7,9 @@ import { CreateTestCaseRequest, TestCaseData, useAddTestCaseMutation } from "../
 interface AddTestCaseFormProps {
     problemId: number;
     handleClose: () => void;
-    addToList: (testCase: TestCaseData) => void;
 }
 
-function AddTestCaseForm({problemId, handleClose, addToList }: AddTestCaseFormProps) {
+function AddTestCaseForm({problemId, handleClose}: AddTestCaseFormProps) {
     const [addTestCase, result] = useAddTestCaseMutation();
 
     function handleSubmit(values: TestCaseFormData) {
@@ -25,14 +24,6 @@ function AddTestCaseForm({problemId, handleClose, addToList }: AddTestCaseFormPr
     useEffect(() => {
         if(result.isSuccess) {
             toast.success("TestCase added");
-
-            let testCase:TestCaseData = {
-                id: result.data.testCaseId,
-                input: result.originalArgs?.input!,
-                output: result.originalArgs?.output!
-            }
-            
-            addToList(testCase);
             handleClose();
         }
     },[result.isSuccess])

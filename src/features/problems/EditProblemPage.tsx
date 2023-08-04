@@ -1,41 +1,16 @@
-import { Button, Grid, Typography } from '@mui/material';
-import { TestCaseData, useGetProblemQuery } from '../../app/admin-api-slice';
+import { Grid, Typography } from '@mui/material';
 import { useParams } from 'react-router';
-import { useEffect, useState } from 'react';
-import AddTestCaseForm from '../testcase/AddTestCaseForm';
-import CodelyModal from '../../components/modal/CodelyModal';
 import Loader from '../../components/loader/Loader';
+import { useGetProblemQuery } from '../../app/admin-api-slice';
+import TestCaseContainer from '../testcase/TestCaseContainer';
 
 function EditProblemPage() {
     let {id} = useParams();
     const {data,isLoading, isSuccess } = useGetProblemQuery(id!);
-    const [openAddTestCaseModal, setOpenAddTestCaseModal] = useState(false);
-
-    const [testCases, setTestCases] = useState<TestCaseData[]>([]);
-
-    useEffect(() =>{
-        if(isSuccess){
-            setTestCases(data?.problem.testCases!);
-        }
-    },[isSuccess]);
-
-    const handleOpen = () => setOpenAddTestCaseModal(true);
-    const handleClose= () => setOpenAddTestCaseModal(false);
-
-    const addToList = (newTestCase: TestCaseData) => {
-        console.log(newTestCase);
-        setTestCases(oldValues => [...oldValues, newTestCase]);
-    };
 
     return (
         <Grid container>
             <Loader isLoading={isLoading} />
-            <CodelyModal  
-                isOpen={openAddTestCaseModal}
-                onClose={handleClose}
-            >
-                <AddTestCaseForm problemId={Number(id)} handleClose={handleClose} addToList={addToList}/>
-            </CodelyModal>
             <Grid item xs={12} lg={6}>
                 <Grid container direction="column" spacing={2}>
                     <Grid item>
@@ -58,18 +33,7 @@ function EditProblemPage() {
                 </Grid>
             </Grid>
             <Grid item xs={12} lg={6}>
-                <Grid container direction="column" spacing={2}>
-                    <Button onClick={handleOpen}>Add test case</Button>
-                    <Grid item>
-                        {data?.problem.testCases.map((testCase) =>
-                            <Grid key={testCase.id}>
-                                <Grid>
-                                    Input: {testCase.input}
-                                    Output: {testCase.output}
-                                </Grid>
-                            </Grid>)}
-                    </Grid>
-                </Grid>
+                <TestCaseContainer testCases={data?.problem.testCases ?? []} problemId={Number(id)} />
             </Grid>
         </Grid>
     );

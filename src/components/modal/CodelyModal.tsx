@@ -11,7 +11,8 @@ const modalStyle = {
     border: '2px solid gray',
     boxShadow: 24,
     p: 4,
-    borderRadius: "10px"
+    borderRadius: '10px',
+    textAlign: 'center'
 };
 
 interface CodleyModalProps{

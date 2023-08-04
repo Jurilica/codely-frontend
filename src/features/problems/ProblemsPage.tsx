@@ -1,30 +1,41 @@
 import { Button, Card, Grid, Typography } from '@mui/material';
-import { useArchiveProblemMutation, useGetProblemsQuery } from '../../app/admin-api-slice';
 import Loader from '../../components/loader/Loader';
-import ProblemsTable from '../../components/problems/ProblemsTable';
+import ProblemsTable from './ProblemsTable';
 import { useEffect, useState } from 'react';
 import CodelyModal from '../../components/modal/CodelyModal';
 import AddProblemForm from './AddProblemForm';
+import { useArchiveProblemMutation, useGetProblemsQuery } from '../../app/admin-api-slice';
 import { toast } from 'react-toastify';
+import CodelyConfirmationModal from '../../components/modal/CodelyConfirmationModal';
 
 function ProblemsPage() {
     const {data, isLoading, isSuccess} = useGetProblemsQuery();
     const [archiveProblem, result] = useArchiveProblemMutation();
 
     const [openAddProblemModal, setOpenAddProblemModal] = useState(false);
+    const [openDeleteProblemModal, setOpenDeleteProblemModal] = useState(false);
+    const [problemId, setProblemId] = useState(0);
 
     const handleOpenAddProblemModal = () => setOpenAddProblemModal(true);
     const handleCloseAddProblemModal = () => setOpenAddProblemModal(false);
 
-    const handleDelete = (id:number) =>  {
-        archiveProblem(id.toString());
+    const handleOpenDeleteProblemModal = (id:number) => {
+        setOpenDeleteProblemModal(true);
+        setProblemId(id);
+    }
+
+    const handleCloseDeleteProblemModal = () => setOpenDeleteProblemModal(false);
+
+    const handleDelete = () =>  {
+        archiveProblem(problemId.toString());
+        handleCloseDeleteProblemModal();
     };
 
     useEffect(() => {
         if(result.isSuccess){
             toast.success("Problem deleted");
         }
-    }, [result.isSuccess])
+    }, [result.isSuccess]);
 
     return (
         <Grid item xs={12} md={7} lg={8}>
@@ -35,17 +46,24 @@ function ProblemsPage() {
                 </Grid>
                 <Grid item >
                     <Button onClick={handleOpenAddProblemModal}>Add new problem</Button>
-                    <CodelyModal  
-                        isOpen={openAddProblemModal}
-                        onClose={handleCloseAddProblemModal}
-                    >
-                        <AddProblemForm handleClose={handleOpenAddProblemModal}/>
-                    </CodelyModal>
                 </Grid>
             </Grid>
             <Card sx={{ mt: 2 }}>
-               {isSuccess && <ProblemsTable data={data} handleDelete={handleDelete}/>}
+               {isSuccess && <ProblemsTable data={data.problems} handleOpenDeleteProblemModal={handleOpenDeleteProblemModal}/>}
             </Card>
+            <CodelyModal  
+                isOpen={openAddProblemModal}
+                onClose={handleCloseAddProblemModal}
+            >
+                <AddProblemForm handleClose={handleOpenAddProblemModal}/>
+            </CodelyModal>
+            <CodelyConfirmationModal 
+                isOpen={openDeleteProblemModal} 
+                onConfirm={handleDelete} 
+                onDecline={handleCloseDeleteProblemModal} 
+                onClose={handleCloseDeleteProblemModal} 
+                text={`Are you sure you want to delete ${data?.problems.find(x => x.id == problemId)?.title}?`} 
+            />
       </Grid>
     );
 }

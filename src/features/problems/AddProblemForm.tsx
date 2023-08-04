@@ -1,8 +1,9 @@
 import { CreateProblemRequest, useAddProblemMutation} from '../../app/admin-api-slice';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import ProblemForm, { ProblemData } from '../../components/problems/ProblemForm';
+import ProblemForm, { ProblemData } from './ProblemForm';
 import { toast } from 'react-toastify';
+import { Grid, Typography } from '@mui/material';
 
 interface  CreateProblemFormProps {
     handleClose: () => void;
@@ -30,7 +31,20 @@ function AddProblemForm({handleClose}:CreateProblemFormProps) {
     },[result.isSuccess]);
 
     return (
-        <ProblemForm handleSubmit={handleSubmit} initialValues={{title:"", description:""}} />
+        <Grid 
+            container
+            spacing={1} 
+            alignItems="center" 
+            justifyContent="center"
+            direction="column"
+        >
+            <Grid item>
+                <Typography variant="h4" component="h4">Create problem</Typography>
+            </Grid>
+            <Grid item>
+                <ProblemForm handleSubmit={handleSubmit} initialValues={{title:"", description:""}} />
+            </Grid>
+        </Grid>
     );
 }
 
