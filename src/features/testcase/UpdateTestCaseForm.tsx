@@ -28,7 +28,7 @@ function UpdateTestCaseForm({testCase, handleClose}: UpdateTestCaseFormProps) {
             toast.success("TestCase updated");
             handleClose();
         }
-    },[result.isSuccess])
+    },[result.isSuccess, handleClose])
 
     return (
         <Grid 
