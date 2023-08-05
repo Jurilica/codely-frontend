@@ -45,7 +45,6 @@ function UpdateTestCaseForm({testCase, handleClose}: UpdateTestCaseFormProps) {
                 <TestCaseForm handleSubmit={handleSubmit} initialValues={{input:testCase.input, output:testCase.output}} />
             </Grid>
         </Grid>
-      
     );
 }
 
