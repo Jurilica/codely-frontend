@@ -1,15 +1,10 @@
-import { Button, Grid, Switch, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { useParams } from 'react-router';
 import Loader from '../../components/loader/Loader';
-import { ProblemStatus, useGetProblemQuery, usePublishProblemMutation, useUnpublishProblemMutation } from '../../app/admin-api-slice';
+import { useGetProblemQuery } from '../../app/admin-api-slice';
 import TestCaseContainer from '../testcase/TestCaseContainer';
 import ProblemStatusComponent from './ProblemStatusComponent';
 import ExampleContainer from '../example/ExampleContainer';
-import { toast } from 'react-toastify';
-import { useEffect, useState } from 'react';
-import UpdateProblemForm from './UpdateProblemForm';
-import CodelyModal from '../../components/modal/CodelyModal';
-import CodelyConfirmationModal from '../../components/modal/CodelyConfirmationModal';
 import EditProblemButton from './EditProblemButton';
 import DeleteProblemButton from './DeleteProblemButton';
 import ChangeProblemStatusButton from './ChangeProblemStatusButton';
@@ -39,13 +34,13 @@ function EditProblemPage() {
                             </Grid>
                             <Grid container spacing={2} paddingY="10px" justifyContent="center">
                                 <Grid item>
-                                   <EditProblemButton problem={{...data.problem}} />
+                                   <EditProblemButton problem={{...data.problem}} variant="contained"/>
                                 </Grid>
                                 <Grid item>
-                                    <ChangeProblemStatusButton problem={{...data.problem}} />
+                                    <ChangeProblemStatusButton problem={{...data.problem}} variant="contained"/>
                                 </Grid>
                                 <Grid item>
-                                    <DeleteProblemButton problem={{...data.problem}} shouldNavigate={true} />
+                                    <DeleteProblemButton problem={{...data.problem}} shouldNavigate={true} variant="contained"/>
                                 </Grid>
                             </Grid>
                         </Grid>

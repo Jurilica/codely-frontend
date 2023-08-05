@@ -6,26 +6,27 @@ import { Button } from "@mui/material";
 
 interface ChangeProblemStatusButtonProps{
     problem: GetProblemsData;
+    variant: "contained" | "outlined" | "text";
 }
 
-function  ChangeProblemStatusButton({problem,}: ChangeProblemStatusButtonProps){
+function  ChangeProblemStatusButton({problem, variant}: ChangeProblemStatusButtonProps){
     const [publishProblem, publishProblemResult] = usePublishProblemMutation();
     const [unpublishProblem, unpublishProblemResult] = useUnpublishProblemMutation();
     
-    const [openPublishUnpublishProblemModal, setOpenPublishUnpublishProblemProblemModal] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
 
-    const handleOpenPublishUnpublishProblemProblemModal = () => setOpenPublishUnpublishProblemProblemModal(true);
-    const handleClosePublishUnpublishProblemProblemModal = () => setOpenPublishUnpublishProblemProblemModal(false);
+    const handleOpenModal = () => setOpenModal(true);
+    const handleCloseModal = () => setOpenModal(false);
 
     const handleChange = () => {
-        if(problem.problemStatus == ProblemStatus.Published) {
+        if(problem.problemStatus === ProblemStatus.Published) {
             unpublishProblem(problem.id.toString());
-            handleClosePublishUnpublishProblemProblemModal();
+            handleCloseModal();
             return;
         }
 
         publishProblem(problem.id.toString());
-        handleClosePublishUnpublishProblemProblemModal();
+        handleCloseModal();
     }
 
     useEffect(() => {
@@ -42,14 +43,14 @@ function  ChangeProblemStatusButton({problem,}: ChangeProblemStatusButtonProps){
 
     return (
         <>
-            <Button variant="contained" onClick={handleOpenPublishUnpublishProblemProblemModal}>
+            <Button variant={variant} onClick={handleOpenModal}>
                 {problem.problemStatus === ProblemStatus.Unpublished ? "Publish problem" : "Unpublish problem"}
             </Button>
             <CodelyConfirmationModal 
-                isOpen={openPublishUnpublishProblemModal} 
+                isOpen={openModal} 
                 onConfirm={handleChange} 
-                onDecline={handleClosePublishUnpublishProblemProblemModal} 
-                onClose={handleClosePublishUnpublishProblemProblemModal} 
+                onDecline={handleCloseModal} 
+                onClose={handleCloseModal} 
                 text={`Are you sure you want to ${problem.problemStatus === ProblemStatus.Unpublished ? "publish" : "unpublish"} problem  ${problem.title}?`} 
             />
         </>

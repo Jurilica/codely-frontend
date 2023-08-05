@@ -74,7 +74,7 @@ export const adminApiSlice = createApi({
                 }),
                 invalidatesTags:['TestCase']
             }),
-            archiveTestCase: builder.mutation<ArchiveProblemResponse, string>({
+            archiveTestCase: builder.mutation<ArchiveTestCaseResponse, string>({
                 query: (id) => ({
                     url: `admin/test-cases/${id}`,
                     method: "DELETE"
@@ -86,6 +86,21 @@ export const adminApiSlice = createApi({
                     url: "admin/examples",
                     method: "POST",
                     body: testCase
+                }),
+                invalidatesTags:['Example']
+            }),
+            updateExample : builder.mutation<UpdateExampleResponse, UpdateExampleRequest>({
+                query: (testCase) => ({
+                    url: "admin/examples",
+                    method: "PUT",
+                    body: testCase
+                }),
+                invalidatesTags:['Example']
+            }),
+            archiveExample: builder.mutation<ArchiveExampleResponse, string>({
+                query: (id) => ({
+                    url: `admin/examples/${id}`,
+                    method: "DELETE"
                 }),
                 invalidatesTags:['Example']
             }),
@@ -104,7 +119,9 @@ export const {
     useAddTestCaseMutation,
     useUpdateTestCaseMutation,
     useArchiveTestCaseMutation,
-    useAddExampleMutation} = adminApiSlice;
+    useAddExampleMutation,
+    useUpdateExampleMutation,
+    useArchiveExampleMutation} = adminApiSlice;
 
 export interface CreateProblemRequest {
     title: string;
@@ -209,6 +226,20 @@ export interface CreateExampleRequest {
 export interface CreateExampleResponse {
     testCaseId: number;
 }
+
+export interface UpdateExampleRequest {
+    exampleId: number;
+    input: string;
+    output: string;
+    explanation: string;
+}
+
+export interface UpdateExampleResponse {
+}
+
+export interface ArchiveExampleResponse {
+}
+
 
 
 

@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import { CreateExampleRequest, useAddExampleMutation } from "../../app/admin-api-slice";
-import ExampleForm, { ExampleData } from "./ExampleForm";
+import ExampleForm, { ExampleFormData } from "./ExampleForm";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 
@@ -9,10 +9,10 @@ interface CreateExampleFormProps {
     problemId: number;
 }
 
-function AddProblemForm({handleClose, problemId}:CreateExampleFormProps) {
+function AddExampleForm({handleClose, problemId}:CreateExampleFormProps) {
     const [addExample, result] = useAddExampleMutation();
 
-    function handleSubmit(values: ExampleData) {
+    function handleSubmit(values: ExampleFormData) {
         var createExampleRequest: CreateExampleRequest = {
             problemId: problemId,
             ...values
@@ -26,7 +26,7 @@ function AddProblemForm({handleClose, problemId}:CreateExampleFormProps) {
             toast.success("Example added");
             handleClose();
         }
-    },[result.isSuccess]);
+    },[result.isSuccess, handleClose]);
 
     return (
         <Grid 
@@ -37,7 +37,7 @@ function AddProblemForm({handleClose, problemId}:CreateExampleFormProps) {
             direction="column"
         >
             <Grid item>
-                <Typography variant="h4" component="h4">Create example</Typography>
+                <Typography variant="h4" component="h4">Add example</Typography>
             </Grid>
             <Grid item>
                 <ExampleForm handleSubmit={handleSubmit} initialValues={{input:"", output:"", explanation: ""}} />
@@ -46,4 +46,4 @@ function AddProblemForm({handleClose, problemId}:CreateExampleFormProps) {
     );
 }
 
-export default AddProblemForm;
+export default AddExampleForm;

@@ -1,4 +1,4 @@
-import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Button, Link, Paper, TablePagination} from "@mui/material";
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Link, Paper, TablePagination} from "@mui/material";
 import { useState } from "react";
 import { Link as RouterLink} from "react-router-dom";
 import {GetProblemsData } from "../../app/admin-api-slice";
@@ -69,13 +69,13 @@ function ProblemsTable({data}:ProblemsTableData) {
                                 <ProblemStatusComponent status={row.problemStatus}/>
                             </TableCell>
                             <TableCell align="left">
-                                <EditProblemButton problem={row} />
+                                <EditProblemButton problem={row} variant="text"/>
                             </TableCell>
                             <TableCell align="left">
-                                <DeleteProblemButton problem={row} />
+                                <DeleteProblemButton problem={row} variant="text"/>
                             </TableCell>
                             <TableCell align="left">
-                                <ChangeProblemStatusButton problem={row} />
+                                <ChangeProblemStatusButton problem={row} variant="text"/>
                             </TableCell>
                         </TableRow>
                         );

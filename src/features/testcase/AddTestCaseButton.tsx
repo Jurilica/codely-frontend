@@ -1,15 +1,13 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
 import CodelyModal from "../../components/modal/CodelyModal";
-import UpdateProblemForm from "./UpdateProblemForm";
-import { GetProblemsData } from "../../app/admin-api-slice";
+import AddTestCaseForm from "./AddTestCaseForm";
 
-interface EditProblemButtonProps{
-    problem: GetProblemsData;
-    variant: "contained" | "outlined" | "text";
+interface AddTestCaseButtonProps{
+    problemId: number;
 }
 
-function EditProblemButton({problem, variant}:EditProblemButtonProps){
+function AddTestCaseButton({problemId}:AddTestCaseButtonProps){
     const [openModal, setOpenModal] = useState(false);
 
     const handleOpenModal = () => setOpenModal(true);
@@ -17,17 +15,17 @@ function EditProblemButton({problem, variant}:EditProblemButtonProps){
 
     return (
         <>
-            <Button variant={variant} onClick={handleOpenModal}>
-                Edit problem
+            <Button variant="contained" onClick={handleOpenModal}>
+                Add test case
             </Button>
             <CodelyModal  
                 isOpen={openModal}
                 onClose={handleCloseModal}
             >
-            <UpdateProblemForm problem={problem} handleClose={handleCloseModal}/>
+            <AddTestCaseForm problemId={problemId} handleClose={handleCloseModal} />
         </CodelyModal>
         </>
     );
 };
 
-export default EditProblemButton;
+export default AddTestCaseButton;

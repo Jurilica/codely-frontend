@@ -7,21 +7,22 @@ import { useNavigate } from "react-router-dom";
 
 interface DeleteProblemButtonProps{
     problem: GetProblemsData;
+    variant: "contained" | "outlined" | "text";
     shouldNavigate?: boolean;
 }
 
-function EditProblemButton({problem, shouldNavigate = false}:DeleteProblemButtonProps){
+function DeleteProblemButton({problem, variant, shouldNavigate = false}:DeleteProblemButtonProps){
     const [archiveProblem, result] = useArchiveProblemMutation();
-    const [openDeleteProblemModal, setOpenDeleteProblemModal] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
 
     const navigate = useNavigate();
 
-    const handleOpenDeleteProblemModal = () => setOpenDeleteProblemModal(true);
-    const handleCloseDeleteProblemModal = () => setOpenDeleteProblemModal(false);
+    const handleOpenModal = () => setOpenModal(true);
+    const handleCloseModal = () => setOpenModal(false);
 
     const handleDelete = () =>  {
         archiveProblem(problem.id.toString());
-        handleCloseDeleteProblemModal();
+        handleCloseModal();
         if(shouldNavigate){
             navigate("/problems");
         }
@@ -35,18 +36,18 @@ function EditProblemButton({problem, shouldNavigate = false}:DeleteProblemButton
 
     return (
         <>
-            <Button variant="contained" onClick={handleOpenDeleteProblemModal}>
+            <Button variant={variant} onClick={handleOpenModal}>
                 Delete problem
             </Button>
             <CodelyConfirmationModal 
-                isOpen={openDeleteProblemModal} 
+                isOpen={openModal} 
                 onConfirm={handleDelete} 
-                onDecline={handleCloseDeleteProblemModal} 
-                onClose={handleCloseDeleteProblemModal} 
+                onDecline={handleCloseModal} 
+                onClose={handleCloseModal} 
                 text={`Are you sure you want to delete ${problem.title}?`} 
             />
         </>
     );
 };
 
-export default EditProblemButton;
+export default DeleteProblemButton;

@@ -1,8 +1,10 @@
-import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, Button } from "@mui/material";
+import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination } from "@mui/material";
 import { useState } from "react";
 import { TestCaseData } from "../../app/admin-api-slice";
 import { Column } from "../../app/models";
 import { formatLength } from "../../app/stringFormatter";
+import EditTestCaseButton from "./EditTestCaseButton";
+import DeleteTestCaseButton from "./DeleteTestCaseButton";
   
 const columns: Column[] = [
     { id: 'id', label: 'Id', minWidth: 50 },
@@ -15,10 +17,8 @@ const columns: Column[] = [
 
 interface TestCaseTableProps {
     data: TestCaseData[];
-    handleOpenUpdateTestCaseModal: (id: number) => void;
-    handleOpenDeleteTestCaseModal: (id: number) => void;
 } 
-export default function TestCaseTable({data, handleOpenUpdateTestCaseModal, handleOpenDeleteTestCaseModal}: TestCaseTableProps) {
+export default function TestCaseTable({data}: TestCaseTableProps) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -64,10 +64,10 @@ export default function TestCaseTable({data, handleOpenUpdateTestCaseModal, hand
                         {formatLength(row.output)}
                       </TableCell>
                       <TableCell  style={{ maxWidth:100, overflow: "hidden"}}>
-                          <Button onClick={() => {handleOpenUpdateTestCaseModal(row.id)}}>Edit</Button>
+                          <EditTestCaseButton testCase={row} />
                       </TableCell>
                       <TableCell  style={{ maxWidth:100, overflow: "hidden"}}>
-                          <Button onClick={() => {handleOpenDeleteTestCaseModal(row.id)}}>Delete</Button>
+                          <DeleteTestCaseButton testCase={row} />
                       </TableCell>
                   </TableRow>
                 );

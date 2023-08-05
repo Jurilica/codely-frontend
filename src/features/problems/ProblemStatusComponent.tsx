@@ -11,7 +11,7 @@ interface ProblemStatusComponentProps{
 function ProblemStatusComponent({status, fontWeight='normal', fontSize='1rem', dotSize = 8}:ProblemStatusComponentProps){
     return (
         <Stack direction="row" spacing={1} alignItems="center">
-            <Dot color={status == ProblemStatus.Published ? "green" : "red"} size={dotSize}/>
+            <Dot color={status === ProblemStatus.Published ? "green" : "red"} size={dotSize}/>
             <Typography sx={{fontWeight:{fontWeight}, fontSize:{fontSize}}}>{status}</Typography>
         </Stack>
     );

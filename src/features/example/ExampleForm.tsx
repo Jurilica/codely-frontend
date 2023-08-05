@@ -2,18 +2,18 @@ import { Button, Grid } from "@mui/material";
 import { Field, Form, Formik } from "formik";
 import CodelyTextField from "../../components/form/CodelyTextField";
 
-export interface ExampleData {
+export interface ExampleFormData {
     input: string;
     output: string;
     explanation: string;
 }
 
 interface ExampleFormProps {
-    handleSubmit: (values: ExampleData) => void;
-    initialValues: ExampleData;
+    handleSubmit: (values: ExampleFormData) => void;
+    initialValues: ExampleFormData;
 }
 
-function ProblemForm({handleSubmit, initialValues}:ExampleFormProps) {
+function ExampleForm({handleSubmit, initialValues}:ExampleFormProps) {
     return (
         <Formik initialValues={{...initialValues}} 
             onSubmit={(values) => handleSubmit(values)}>
@@ -64,4 +64,4 @@ function ProblemForm({handleSubmit, initialValues}:ExampleFormProps) {
     );
 }
 
-export default ProblemForm;
+export default ExampleForm;

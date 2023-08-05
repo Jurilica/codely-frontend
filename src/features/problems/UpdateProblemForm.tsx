@@ -26,7 +26,7 @@ function UpdateProblemForm({problem, handleClose}:UpdateProblemFormProps) {
             toast.success("Problem updated");
             handleClose();
         }
-    },[result.isSuccess]);
+    },[result.isSuccess, handleClose]);
 
     return (
         <Grid 

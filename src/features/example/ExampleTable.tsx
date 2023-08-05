@@ -1,8 +1,10 @@
-import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination, Button } from "@mui/material";
+import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination } from "@mui/material";
 import { useState } from "react";
-import { ExampleData, TestCaseData } from "../../app/admin-api-slice";
+import { ExampleData} from "../../app/admin-api-slice";
 import { Column } from "../../app/models";
 import { formatLength } from "../../app/stringFormatter";
+import EditExampleButton from "./EditExampleButton";
+import DeleteExampleButton from "./DeleteExampleButton";
   
 const columns: Column[] = [
     { id: 'id', label: 'Id', maxWidth: 50},
@@ -15,10 +17,8 @@ const columns: Column[] = [
 
 interface ExampleTableProps {
     data: ExampleData[];
-    handleOpenUpdateExampleModal: (id: number) => void;
-    handleOpenDeleteExampleModal: (id: number) => void;
 } 
-export default function ExampleTable({data, handleOpenUpdateExampleModal, handleOpenDeleteExampleModal}: ExampleTableProps) {
+export default function ExampleTable({data}: ExampleTableProps) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -67,10 +67,10 @@ export default function ExampleTable({data, handleOpenUpdateExampleModal, handle
                       {formatLength(row.explanation)}
                     </TableCell>
                     <TableCell style={{ maxWidth:100, overflow: "hidden"}}>
-                        <Button onClick={() => {handleOpenUpdateExampleModal(row.id)}}>Edit</Button>
+                        <EditExampleButton example={row}  />
                     </TableCell>
                     <TableCell style={{ maxWidth:100, overflow: "hidden"}}>
-                        <Button onClick={() => {handleOpenDeleteExampleModal(row.id)}}>Delete</Button>
+                        <DeleteExampleButton example={row}/>
                     </TableCell>
                   </TableRow>
                 );
