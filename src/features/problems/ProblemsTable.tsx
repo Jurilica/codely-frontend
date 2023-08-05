@@ -1,34 +1,27 @@
-import { Stack, Typography, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Button, Link, Paper, TablePagination, Grid } from "@mui/material";
+import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Button, Link, Paper, TablePagination} from "@mui/material";
 import { useState } from "react";
 import { Link as RouterLink} from "react-router-dom";
-import { ProblemStatus, GetProblemsData } from "../../app/admin-api-slice";
-import Dot from "../../components/generic/Dot";
+import {GetProblemsData } from "../../app/admin-api-slice";
 import { Column } from "../../app/models";
+import ProblemStatusComponent  from "./ProblemStatusComponent";
+import EditProblemButton from "./EditProblemButton";
+import DeleteProblemButton from "./DeleteProblemButton";
+import ChangeProblemStatusButton from "./ChangeProblemStatusButton";
 
 const columns : Column[] = [
     {id:"1", label: "Id"},
     {id:"2", label: "Title"},
     {id:"3", label: "Status"},
     {id:"4", label: "Edit"},
-    {id:"5", label: "Delete"}
+    {id:"5", label: "Delete"},
+    {id:"6", label: "Change status"}
 ];
-
-const ProblemStatusComponent = ({status}: {status: ProblemStatus}) => {
-    return (
-      <Stack direction="row" spacing={1} alignItems="center">
-        <Dot color={status == ProblemStatus.Published ? "green" : "red"} size={8}/>
-        <Typography>{status}</Typography>
-      </Stack>
-    );
-  };
 
 interface ProblemsTableData {
     data: GetProblemsData[];
-    handleOpenDeleteProblemModal: (id:number) => void;
-    handleOpenUpdateProblemModal: (id:number) => void;
 }
 
-function ProblemsTable({data, handleOpenDeleteProblemModal, handleOpenUpdateProblemModal}:ProblemsTableData) {
+function ProblemsTable({data}:ProblemsTableData) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
   
@@ -43,7 +36,7 @@ function ProblemsTable({data, handleOpenDeleteProblemModal, handleOpenUpdateProb
 
     return (
         <Paper sx={{ width: '100%', overflow:'hidden'}}>
-            <TableContainer sx={{ height: 'max-content', minHeight:'720px', maxHeight:'820px'}}>
+            <TableContainer sx={{ height: '760px'}}>
                 <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                     <TableRow>
@@ -69,15 +62,20 @@ function ProblemsTable({data, handleOpenDeleteProblemModal, handleOpenUpdateProb
                                     {row.id}
                                 </Link>
                             </TableCell>
-                            <TableCell align="left">{row.title}</TableCell>
+                            <TableCell align="left">
+                                {row.title}
+                            </TableCell>
                             <TableCell align="left">
                                 <ProblemStatusComponent status={row.problemStatus}/>
                             </TableCell>
                             <TableCell align="left">
-                                <Button onClick={() => {handleOpenUpdateProblemModal(row.id)}}>Edit</Button>
+                                <EditProblemButton problem={row} />
                             </TableCell>
                             <TableCell align="left">
-                                <Button onClick={() => {handleOpenDeleteProblemModal(row.id)}}>Delete</Button>
+                                <DeleteProblemButton problem={row} />
+                            </TableCell>
+                            <TableCell align="left">
+                                <ChangeProblemStatusButton problem={row} />
                             </TableCell>
                         </TableRow>
                         );

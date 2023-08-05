@@ -37,6 +37,20 @@ export const adminApiSlice = createApi({
                 }),
                 invalidatesTags:['Problem']
             }),
+            publishProblem : builder.mutation<PublishProblemResponse, string>({
+                query: (id) => ({
+                    url: `admin/problems/${id}/publish`,
+                    method: "PUT"
+                }),
+                invalidatesTags:['Problem']
+            }),
+            unpublishProblem : builder.mutation<UnpublishProblemResponse, string>({
+                query: (id) => ({
+                    url: `admin/problems/${id}/unpublish`,
+                    method: "PUT"
+                }),
+                invalidatesTags:['Problem']
+            }),
             archiveProblem: builder.mutation<ArchiveProblemResponse, string>({
                 query: (id) => ({
                     url: `admin/problems/${id}`,
@@ -67,6 +81,14 @@ export const adminApiSlice = createApi({
                 }),
                 invalidatesTags:['TestCase']
             }),
+            addExample : builder.mutation<CreateExampleResponse, CreateExampleRequest>({
+                query: (testCase) => ({
+                    url: "admin/examples",
+                    method: "POST",
+                    body: testCase
+                }),
+                invalidatesTags:['Example']
+            }),
         }
     }
 });
@@ -74,12 +96,15 @@ export const adminApiSlice = createApi({
 export const {
     useAddProblemMutation, 
     useUpdateProblemMutation,
+    usePublishProblemMutation,
+    useUnpublishProblemMutation,
     useGetProblemsQuery, 
     useGetProblemQuery, 
     useArchiveProblemMutation,
     useAddTestCaseMutation,
     useUpdateTestCaseMutation,
-    useArchiveTestCaseMutation} = adminApiSlice;
+    useArchiveTestCaseMutation,
+    useAddExampleMutation} = adminApiSlice;
 
 export interface CreateProblemRequest {
     title: string;
@@ -94,6 +119,12 @@ export interface UpdateProblemRequest {
     problemId: number;
     title: string;
     description: string;
+}
+
+export interface PublishProblemResponse {
+}
+
+export interface UnpublishProblemResponse {
 }
 
 export interface UpdateProblemResponse {
@@ -166,6 +197,17 @@ export interface UpdateTestCaseResponse {
 }
 
 export interface ArchiveTestCaseResponse {
+}
+
+export interface CreateExampleRequest {
+    problemId: number;
+    input: string;
+    output: string;
+    explanation: string;
+}
+
+export interface CreateExampleResponse {
+    testCaseId: number;
 }
 
 

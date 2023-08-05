@@ -5,7 +5,7 @@ import ProblemForm, { ProblemData } from './ProblemForm';
 import { toast } from 'react-toastify';
 import { Grid, Typography } from '@mui/material';
 
-interface  CreateProblemFormProps {
+interface CreateProblemFormProps {
     handleClose: () => void;
 }
 

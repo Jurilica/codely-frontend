@@ -50,18 +50,18 @@ function TestCaseContainer({testCases,problemId}:TestCaseContainerProps) {
     }, [result.isSuccess]);
     
     return (
-       <Grid container>
-            <Grid container direction="column" spacing={2}>
-                    <Grid container direction="row" spacing={1} padding="10px">
-                        <Grid item xs={4}>
-                            <Typography>TestCases:</Typography>
-                        </Grid>
-                        <Grid item xs={8} textAlign="right" paddingRight="20px">
-                            <Button onClick={handleOpenAddTestCaseModal}>Add test case</Button>
-                        </Grid>
-                    </Grid>
-                    <TestCaseTable data={testCases} handleOpenUpdateTestCaseModal={handleOpenUpdateTestCaseModal} handleOpenDeleteTestCaseModal={handleOpenDeleteTestCaseModal}/>
+        <Grid container direction="column" alignContent="center" alignItems="center" spacing={2}>
+            <Grid container alignItems="center" justifyContent="space-between">
+                <Grid item>
+                    <Typography>TestCases:</Typography>
                 </Grid>
+            </Grid>
+            <Grid container marginTop="25px">
+                <TestCaseTable data={testCases} handleOpenUpdateTestCaseModal={handleOpenUpdateTestCaseModal} handleOpenDeleteTestCaseModal={handleOpenDeleteTestCaseModal}/>
+            </Grid>
+            <Grid item>
+                <Button variant="contained" onClick={handleOpenAddTestCaseModal}>Add test case</Button>
+            </Grid>
             <CodelyModal  
                 isOpen={openAddTestCaseModal}
                 onClose={handleCloseAddTestCaseModal}

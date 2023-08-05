@@ -2,6 +2,7 @@ import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody
 import { useState } from "react";
 import { TestCaseData } from "../../app/admin-api-slice";
 import { Column } from "../../app/models";
+import { formatLength } from "../../app/stringFormatter";
   
 const columns: Column[] = [
     { id: 'id', label: 'Id', minWidth: 50 },
@@ -19,7 +20,7 @@ interface TestCaseTableProps {
 } 
 export default function TestCaseTable({data, handleOpenUpdateTestCaseModal, handleOpenDeleteTestCaseModal}: TestCaseTableProps) {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -31,8 +32,8 @@ export default function TestCaseTable({data, handleOpenUpdateTestCaseModal, hand
   };
 
   return (
-    <Paper sx={{ width: '100%', overflow:'hidden'}}>
-      <TableContainer sx={{ height: 'max-content', maxHeight:'820px'}}>
+    <Paper sx={{ width: "100%", overflow:"hidden"}}>
+      <TableContainer sx={{height:"410px"}}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -53,21 +54,21 @@ export default function TestCaseTable({data, handleOpenUpdateTestCaseModal, hand
               .map((row) => {
                 return (
                    <TableRow hover tabIndex={-1} key={row.id}>
-                    <TableCell>
-                      {row.id}
-                    </TableCell>
-                    <TableCell>
-                      {row.input}
-                    </TableCell>
-                    <TableCell>
-                      {row.output}
-                    </TableCell>
-                    <TableCell>
-                        <Button onClick={() => {handleOpenUpdateTestCaseModal(row.id)}}>Edit</Button>
-                    </TableCell>
-                    <TableCell>
-                        <Button onClick={() => {handleOpenDeleteTestCaseModal(row.id)}}>Delete</Button>
-                    </TableCell>
+                      <TableCell  style={{ maxWidth:100, overflow: "hidden"}}>
+                        {row.id}
+                      </TableCell>
+                      <TableCell  style={{ maxWidth:100, overflow: "hidden"}}>
+                        {formatLength(row.input)}
+                      </TableCell>
+                      <TableCell  style={{ maxWidth:100, overflow: "hidden"}}>
+                        {formatLength(row.output)}
+                      </TableCell>
+                      <TableCell  style={{ maxWidth:100, overflow: "hidden"}}>
+                          <Button onClick={() => {handleOpenUpdateTestCaseModal(row.id)}}>Edit</Button>
+                      </TableCell>
+                      <TableCell  style={{ maxWidth:100, overflow: "hidden"}}>
+                          <Button onClick={() => {handleOpenDeleteTestCaseModal(row.id)}}>Delete</Button>
+                      </TableCell>
                   </TableRow>
                 );
               })}
@@ -75,7 +76,7 @@ export default function TestCaseTable({data, handleOpenUpdateTestCaseModal, hand
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[5, 10, 25]}
         component="div"
         count={data.length}
         rowsPerPage={rowsPerPage}
