@@ -16,7 +16,9 @@ function UpdateTestCaseForm({testCase, handleClose}: UpdateTestCaseFormProps) {
         var createTestCaseRequest: UpdateTestCaseRequest = {
             testCaseId: testCase.id,
             ...values
-        }
+        };
+
+        console.log(values);
 
         updateTestCase(createTestCaseRequest);
     };
