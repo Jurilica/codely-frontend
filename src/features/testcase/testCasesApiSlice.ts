@@ -1,6 +1,6 @@
 import { apiSlice } from "../../app/apiSlice";
 
-export const adminApiSlice = apiSlice.injectEndpoints({
+export const testCasesApiSlice = apiSlice.injectEndpoints({
     endpoints(builder) {
         return {
             archiveProblem: builder.mutation<ArchiveProblemResponse, string>({
@@ -40,7 +40,7 @@ export const adminApiSlice = apiSlice.injectEndpoints({
 export const {
     useAddTestCaseMutation,
     useUpdateTestCaseMutation,
-    useArchiveTestCaseMutation} = adminApiSlice;
+    useArchiveTestCaseMutation} = testCasesApiSlice;
 
 export interface ArchiveProblemResponse {
 }

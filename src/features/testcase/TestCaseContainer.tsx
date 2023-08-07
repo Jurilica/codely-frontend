@@ -1,7 +1,7 @@
 import {  Grid, Typography } from "@mui/material";
-import { TestCaseData } from "../../app/adminApiSlice";
 import TestCaseTable from "./TestCaseTable";
 import AddTestCaseButton from "./AddTestCaseButton";
+import { TestCaseData } from "../problems/problemsApiSlice";
 
 interface TestCaseContainerProps {
     testCases: TestCaseData[];

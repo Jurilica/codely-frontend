@@ -1,8 +1,8 @@
 import { Grid, Typography } from "@mui/material";
-import { CreateExampleRequest, useAddExampleMutation } from "../../app/adminApiSlice";
 import ExampleForm, { ExampleFormData } from "./ExampleForm";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
+import { CreateExampleRequest, useAddExampleMutation } from "./examplesApiSlice";
 
 interface CreateExampleFormProps {
     handleClose: () => void;

@@ -2,7 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 import TestCaseForm, { TestCaseFormData } from "./TestCaseForm";
-import { CreateTestCaseRequest, useAddTestCaseMutation } from "../../app/adminApiSlice";
+import { CreateTestCaseRequest, useAddTestCaseMutation } from './testCasesApiSlice';
 
 interface AddTestCaseFormProps {
     problemId: number;
@@ -26,7 +26,7 @@ function AddTestCaseForm({problemId, handleClose}: AddTestCaseFormProps) {
             toast.success("TestCase added");
             handleClose();
         }
-    },[result.isSuccess])
+    },[result.isSuccess, handleClose])
 
     return (
         <Grid 

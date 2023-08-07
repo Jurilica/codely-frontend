@@ -27,7 +27,7 @@ function AddProblemForm({handleClose}:CreateProblemFormProps) {
             toast.success("Problem added");
             handleClose();
         }
-    },[result.isSuccess]);
+    },[result.isSuccess, result.data?.problemId, handleClose, navigate]);
 
     return (
         <Grid 

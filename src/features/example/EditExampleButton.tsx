@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { ExampleData } from "../../app/adminApiSlice";
 import { Button } from "@mui/material";
 import CodelyModal from "../../components/modal/CodelyModal";
 import UpdateExampleForm from "./UpdateExampleForm";
+import { ExampleData } from "../problems/problemsApiSlice";
 
 interface EditExampleButtonProps{
     example: ExampleData;

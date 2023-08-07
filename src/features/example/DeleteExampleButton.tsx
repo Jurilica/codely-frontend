@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { ExampleData, useArchiveExampleMutation } from "../../app/adminApiSlice";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 import CodelyConfirmationModal from "../../components/modal/CodelyConfirmationModal";
+import { useArchiveExampleMutation } from "./examplesApiSlice";
+import { ExampleData } from "../problems/problemsApiSlice";
 
 interface DeleteExampleButtonProps{
     example: ExampleData;
