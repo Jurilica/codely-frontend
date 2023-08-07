@@ -41,7 +41,7 @@ export const baseQueryWithErrorAndReauthHandling: BaseQueryFn<
             
             try{
                 const body: RefreshTokenRequest = {
-                    refreshToken: localStorage.getItem("refreshToken")
+                    refreshToken: localStorage.getItem("user")
                 };
     
                 const refreshResult = await baseQuery(
