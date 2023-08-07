@@ -1,6 +1,5 @@
-import { useLocation, Navigate, Outlet } from "react-router-dom"
-import authSlice from "./authSlice"
-import { useAppSelector } from "../../app/hooks"
+import { useLocation, Navigate, Outlet } from 'react-router-dom';
+import { useAppSelector } from '../../app/hooks';
 
 function RequireAuth() {
     const token = useAppSelector((state) => state.auth.token);

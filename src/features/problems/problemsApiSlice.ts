@@ -1,10 +1,6 @@
-import { createApi } from '@reduxjs/toolkit/query/react';
-import { baseQueryWithErrorHandling } from './api';
+import { apiSlice } from "../../app/apiSlice";
 
-export const adminApiSlice = createApi({
-    reducerPath: 'adminApi',
-    baseQuery : baseQueryWithErrorHandling,
-    tagTypes: ['Problem', 'TestCase', 'Example'],
+export const problemsApiSlice = apiSlice.injectEndpoints({
     endpoints(builder) {
         return {
             getProblems: builder.query<GetProblemsResponse, void>({
@@ -57,53 +53,7 @@ export const adminApiSlice = createApi({
                     method: "DELETE"
                 }),
                 invalidatesTags:['Problem']
-            }),
-            addTestCase : builder.mutation<CreateTestCaseResponse, CreateTestCaseRequest>({
-                query: (testCase) => ({
-                    url: "admin/test-cases",
-                    method: "POST",
-                    body: testCase
-                }),
-                invalidatesTags:['TestCase']
-            }),
-            updateTestCase : builder.mutation<UpdateTestCaseResponse, UpdateTestCaseRequest>({
-                query: (testCase) => ({
-                    url: "admin/test-cases",
-                    method: "PUT",
-                    body: testCase
-                }),
-                invalidatesTags:['TestCase']
-            }),
-            archiveTestCase: builder.mutation<ArchiveTestCaseResponse, string>({
-                query: (id) => ({
-                    url: `admin/test-cases/${id}`,
-                    method: "DELETE"
-                }),
-                invalidatesTags:['TestCase']
-            }),
-            addExample : builder.mutation<CreateExampleResponse, CreateExampleRequest>({
-                query: (testCase) => ({
-                    url: "admin/examples",
-                    method: "POST",
-                    body: testCase
-                }),
-                invalidatesTags:['Example']
-            }),
-            updateExample : builder.mutation<UpdateExampleResponse, UpdateExampleRequest>({
-                query: (testCase) => ({
-                    url: "admin/examples",
-                    method: "PUT",
-                    body: testCase
-                }),
-                invalidatesTags:['Example']
-            }),
-            archiveExample: builder.mutation<ArchiveExampleResponse, string>({
-                query: (id) => ({
-                    url: `admin/examples/${id}`,
-                    method: "DELETE"
-                }),
-                invalidatesTags:['Example']
-            }),
+            })
         }
     }
 });
@@ -115,13 +65,7 @@ export const {
     useUnpublishProblemMutation,
     useGetProblemsQuery, 
     useGetProblemQuery, 
-    useArchiveProblemMutation,
-    useAddTestCaseMutation,
-    useUpdateTestCaseMutation,
-    useArchiveTestCaseMutation,
-    useAddExampleMutation,
-    useUpdateExampleMutation,
-    useArchiveExampleMutation} = adminApiSlice;
+    useArchiveProblemMutation} = problemsApiSlice;
 
 export interface CreateProblemRequest {
     title: string;
@@ -193,53 +137,6 @@ export enum ProblemStatus {
 
 export interface ArchiveProblemResponse {
 }
-
-export interface CreateTestCaseRequest {
-    problemId: number;
-    input: string;
-    output: string;
-}
-
-export interface CreateTestCaseResponse {
-    testCaseId: number;
-}
-
-export interface UpdateTestCaseRequest {
-    testCaseId: number;
-    input: string;
-    output: string;
-}
-
-export interface UpdateTestCaseResponse {
-}
-
-export interface ArchiveTestCaseResponse {
-}
-
-export interface CreateExampleRequest {
-    problemId: number;
-    input: string;
-    output: string;
-    explanation: string;
-}
-
-export interface CreateExampleResponse {
-    testCaseId: number;
-}
-
-export interface UpdateExampleRequest {
-    exampleId: number;
-    input: string;
-    output: string;
-    explanation: string;
-}
-
-export interface UpdateExampleResponse {
-}
-
-export interface ArchiveExampleResponse {
-}
-
 
 
 
