@@ -24,7 +24,6 @@ const baseQuery = fetchBaseQuery({
     }
 });
 
-
 const mutex = new Mutex();
 
 export const baseQueryWithErrorAndReauthHandling: BaseQueryFn<
