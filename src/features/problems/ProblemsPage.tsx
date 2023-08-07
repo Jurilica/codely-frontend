@@ -1,7 +1,7 @@
 import { Card, Grid, Typography } from '@mui/material';
 import Loader from '../../components/loader/Loader';
 import ProblemsTable from './ProblemsTable';
-import { useGetProblemsQuery } from '../../app/admin-api-slice';
+import { useGetProblemsQuery } from '../../app/adminApiSlice';
 import AddProblemButton from './AddProblemButton';
 
 function ProblemsPage() {

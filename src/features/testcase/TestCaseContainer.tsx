@@ -1,5 +1,5 @@
 import {  Grid, Typography } from "@mui/material";
-import { TestCaseData } from "../../app/admin-api-slice";
+import { TestCaseData } from "../../app/adminApiSlice";
 import TestCaseTable from "./TestCaseTable";
 import AddTestCaseButton from "./AddTestCaseButton";
 

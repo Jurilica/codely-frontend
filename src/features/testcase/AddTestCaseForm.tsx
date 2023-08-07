@@ -2,7 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 import TestCaseForm, { TestCaseFormData } from "./TestCaseForm";
-import { CreateTestCaseRequest, useAddTestCaseMutation } from "../../app/admin-api-slice";
+import { CreateTestCaseRequest, useAddTestCaseMutation } from "../../app/adminApiSlice";
 
 interface AddTestCaseFormProps {
     problemId: number;

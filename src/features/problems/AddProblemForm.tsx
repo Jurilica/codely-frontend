@@ -1,4 +1,4 @@
-import { CreateProblemRequest, useAddProblemMutation} from '../../app/admin-api-slice';
+import { CreateProblemRequest, useAddProblemMutation} from '../../app/adminApiSlice';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import ProblemForm, { ProblemData } from './ProblemForm';

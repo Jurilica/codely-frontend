@@ -1,6 +1,6 @@
 import { Paper, TableContainer, Table, TableHead, TableRow, TableCell, TableBody, TablePagination } from "@mui/material";
 import { useState } from "react";
-import { TestCaseData } from "../../app/admin-api-slice";
+import { TestCaseData } from "../../app/adminApiSlice";
 import { Column } from "../../app/models";
 import { formatLength } from "../../app/stringFormatter";
 import EditTestCaseButton from "./EditTestCaseButton";

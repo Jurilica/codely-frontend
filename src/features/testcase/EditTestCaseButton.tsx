@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TestCaseData } from "../../app/admin-api-slice";
+import { TestCaseData } from "../../app/adminApiSlice";
 import { Button } from "@mui/material";
 import CodelyModal from "../../components/modal/CodelyModal";
 import UpdateTestCaseForm from "./UpdateTestCaseForm";

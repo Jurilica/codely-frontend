@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GetProblemsData, ProblemStatus, usePublishProblemMutation, useUnpublishProblemMutation } from "../../app/admin-api-slice";
+import { GetProblemsData, ProblemStatus, usePublishProblemMutation, useUnpublishProblemMutation } from "../../app/adminApiSlice";
 import { toast } from "react-toastify";
 import CodelyConfirmationModal from "../../components/modal/CodelyConfirmationModal";
 import { Button } from "@mui/material";

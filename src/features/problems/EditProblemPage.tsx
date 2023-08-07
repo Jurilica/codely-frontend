@@ -1,7 +1,7 @@
 import { Grid, Typography } from '@mui/material';
 import { useParams } from 'react-router';
 import Loader from '../../components/loader/Loader';
-import { useGetProblemQuery } from '../../app/admin-api-slice';
+import { useGetProblemQuery } from '../../app/adminApiSlice';
 import TestCaseContainer from '../testcase/TestCaseContainer';
 import ProblemStatusComponent from './ProblemStatusComponent';
 import ExampleContainer from '../example/ExampleContainer';

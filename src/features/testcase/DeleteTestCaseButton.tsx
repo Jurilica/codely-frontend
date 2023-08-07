@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { TestCaseData, useArchiveTestCaseMutation } from "../../app/admin-api-slice";
+import { TestCaseData, useArchiveTestCaseMutation } from "../../app/adminApiSlice";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 import CodelyConfirmationModal from "../../components/modal/CodelyConfirmationModal";

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { ExampleData, UpdateExampleRequest, useUpdateExampleMutation } from "../../app/admin-api-slice";
+import { ExampleData, UpdateExampleRequest, useUpdateExampleMutation } from "../../app/adminApiSlice";
 import ExampleForm, { ExampleFormData } from "./ExampleForm";
 import { toast } from "react-toastify";
 import { Grid, Typography } from "@mui/material";

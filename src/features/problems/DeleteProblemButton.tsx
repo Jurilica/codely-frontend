@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import { GetProblemsData, useArchiveProblemMutation } from "../../app/admin-api-slice";
+import { GetProblemsData, useArchiveProblemMutation } from "../../app/adminApiSlice";
 import CodelyConfirmationModal from "../../components/modal/CodelyConfirmationModal";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";

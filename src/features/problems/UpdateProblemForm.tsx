@@ -1,4 +1,4 @@
-import { GetProblemsData, UpdateProblemRequest, useUpdateProblemMutation} from '../../app/admin-api-slice';
+import { GetProblemsData, UpdateProblemRequest, useUpdateProblemMutation} from '../../app/adminApiSlice';
 import { useEffect } from 'react';
 import ProblemForm, { ProblemData } from './ProblemForm';
 import { toast } from 'react-toastify';
