@@ -4,7 +4,6 @@ import { Field, Form, Formik } from "formik";
 import { LoginRequest, useLoginMutation } from "./authApiSlice";
 import Loader from "../../components/loader/Loader";
 import { useEffect } from "react";
-import { useAppDisptach } from "../../app/hooks";
 import CodelyTextField from "../../components/form/CodelyTextField";
 import { useNavigate } from "react-router-dom";
 import { setUserLocalStorageData } from "../../utils/storageHelpers";
