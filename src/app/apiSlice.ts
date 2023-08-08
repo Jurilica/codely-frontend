@@ -1,9 +1,8 @@
 import { BaseQueryFn, FetchArgs, FetchBaseQueryError, createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { toast } from 'react-toastify';
-import { RootState } from './store';
-import { logOut, setCredentials } from '../features/auth/authSlice';
-import { LoginResponse, RefreshTokenRequest } from '../features/auth/authApiSlice';
+import { RefreshTokenRequest } from '../features/auth/authApiSlice';
 import { Mutex } from 'async-mutex';
+import { getRefreshToken, getToken, removeUserLocalStorageData, setUserLocalStorageData } from '../utils/storageHelpers';
 
 const API_URL = "https://localhost:44395/";
 
@@ -13,8 +12,8 @@ interface ErrorData {
 
 const baseQuery = fetchBaseQuery({ 
     baseUrl: API_URL,
-    prepareHeaders: (headers, { getState }) => {
-        const token = (getState() as RootState).auth.token;
+    prepareHeaders: (headers) => {
+        const token = getToken();
 
         if (token) {
             headers.set("authorization", `Bearer ${token}`);
@@ -41,7 +40,7 @@ export const baseQueryWithErrorAndReauthHandling: BaseQueryFn<
             
             try{
                 const body: RefreshTokenRequest = {
-                    refreshToken: localStorage.getItem("user")
+                    refreshToken: getRefreshToken()
                 };
     
                 const refreshResult = await baseQuery(
@@ -54,22 +53,21 @@ export const baseQueryWithErrorAndReauthHandling: BaseQueryFn<
                     extraOptions);
         
                 if (refreshResult.data) {
-                    var tokenData = refreshResult.data as LoginResponse;
                     // store the new token
-                    api.dispatch(setCredentials(tokenData));
+                    setUserLocalStorageData(refreshResult.data);
                     // retry the initial query
                     result = await baseQuery(args, api, extraOptions);
                 } else {
-                    api.dispatch(logOut());
+                    removeUserLocalStorageData();
                 }
             }finally {
                 // release must be called once the mutex should be released again.
-                release()
+                release();
             }
         } else {
             // wait until the mutex is available without locking it
-            await mutex.waitForUnlock()
-            result = await baseQuery(args, api, extraOptions)
+            await mutex.waitForUnlock();
+            result = await baseQuery(args, api, extraOptions);
         }
     }
 

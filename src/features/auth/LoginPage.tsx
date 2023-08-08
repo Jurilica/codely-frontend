@@ -5,9 +5,9 @@ import { LoginRequest, useLoginMutation } from "./authApiSlice";
 import Loader from "../../components/loader/Loader";
 import { useEffect } from "react";
 import { useAppDisptach } from "../../app/hooks";
-import { setCredentials } from "./authSlice";
 import CodelyTextField from "../../components/form/CodelyTextField";
 import { useNavigate } from "react-router-dom";
+import { setUserLocalStorageData } from "../../utils/storageHelpers";
 
 interface LoginFormData {
     username: string;
@@ -21,7 +21,6 @@ const initalValues: LoginFormData = {
 
 function LoginPage() {
     const [login, result] = useLoginMutation();
-    const dispatch = useAppDisptach();
     const navigate = useNavigate();
 
     function handleSubmit(values: LoginFormData) {
@@ -31,11 +30,11 @@ function LoginPage() {
 
     useEffect(() => {
         if(result.isSuccess) {
-            dispatch(setCredentials(result.data));
-            navigate("/problems")
+            setUserLocalStorageData(result.data);
+            navigate("/problems");
         }
 
-    },[result.isSuccess,result.data, dispatch, navigate]);
+    },[result.isSuccess,result.data, navigate]);
 
     return (
         <Container component="main" maxWidth="xs">

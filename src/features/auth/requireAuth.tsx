@@ -1,8 +1,8 @@
 import { useLocation, Navigate, Outlet } from 'react-router-dom';
-import { useAppSelector } from '../../app/hooks';
+import { getToken } from '../../utils/storageHelpers';
 
 function RequireAuth() {
-    const token = useAppSelector((state) => state.auth.token);
+    const token = getToken() !== undefined;
     const location = useLocation();
 
     return (
