@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import ProblemForm, { ProblemData } from './ProblemForm';
 import { toast } from 'react-toastify';
 import { Grid, Typography } from '@mui/material';
-import { CreateProblemRequest, useAddProblemMutation } from './problemsApiSlice';
+import { CreateProblemRequest, useAddProblemMutation } from './problemsAdminApiSlice';
 
 interface CreateProblemFormProps {
     handleClose: () => void;

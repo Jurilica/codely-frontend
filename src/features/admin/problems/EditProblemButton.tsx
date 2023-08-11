@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { useState } from "react";
 import CodelyModal from "../../../components/modal/CodelyModal";
 import UpdateProblemForm from "./UpdateProblemForm";
-import { GetProblemsData } from './problemsApiSlice';
+import { GetProblemsData } from './problemsAdminApiSlice';
 
 interface EditProblemButtonProps{
     problem: GetProblemsData;

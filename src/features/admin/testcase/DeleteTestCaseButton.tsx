@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
 import CodelyConfirmationModal from "../../../components/modal/CodelyConfirmationModal";
-import { TestCaseData } from "../problems/problemsApiSlice";
-import { useArchiveTestCaseMutation } from "./testCasesApiSlice";
+import { TestCaseData } from "../problems/problemsAdminApiSlice";
+import { useArchiveTestCaseMutation } from "./testCasesAdminApiSlice";
 
 interface DeleteTestCaseButtonProps{
     testCase: TestCaseData;

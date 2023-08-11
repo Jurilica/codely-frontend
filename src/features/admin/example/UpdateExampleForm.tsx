@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import ExampleForm, { ExampleFormData } from "./ExampleForm";
 import { toast } from "react-toastify";
 import { Grid, Typography } from "@mui/material";
-import { ExampleData } from "../problems/problemsApiSlice";
-import { UpdateExampleRequest, useUpdateExampleMutation } from "./examplesApiSlice";
+import { ExampleData } from "../problems/problemsAdminApiSlice";
+import { UpdateExampleRequest, useUpdateExampleMutation } from "./examplesAdminApiSlice";
 
 interface UpdateExampleFormProps {
     example: ExampleData;

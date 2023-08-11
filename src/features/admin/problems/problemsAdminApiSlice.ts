@@ -1,6 +1,6 @@
 import { apiSlice } from "../../../app/apiSlice";
 
-export const problemsApiSlice = apiSlice.injectEndpoints({
+export const problemsAdminApiSlice = apiSlice.injectEndpoints({
     endpoints(builder) {
         return {
             getProblems: builder.query<GetProblemsResponse, void>({
@@ -65,7 +65,7 @@ export const {
     useUnpublishProblemMutation,
     useGetProblemsQuery, 
     useGetProblemQuery, 
-    useArchiveProblemMutation} = problemsApiSlice;
+    useArchiveProblemMutation} = problemsAdminApiSlice;
 
 export interface CreateProblemRequest {
     title: string;

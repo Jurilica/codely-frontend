@@ -1,6 +1,6 @@
 import { apiSlice } from "../../../app/apiSlice";
 
-export const examplesApiSlice = apiSlice.injectEndpoints({
+export const examplesAdminApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => {
         return {
             addExample : builder.mutation<CreateExampleResponse, CreateExampleRequest>({
@@ -33,7 +33,7 @@ export const examplesApiSlice = apiSlice.injectEndpoints({
 export const {
     useAddExampleMutation,
     useUpdateExampleMutation,
-    useArchiveExampleMutation} = examplesApiSlice;
+    useArchiveExampleMutation} = examplesAdminApiSlice;
 
 export interface CreateExampleRequest {
     problemId: number;

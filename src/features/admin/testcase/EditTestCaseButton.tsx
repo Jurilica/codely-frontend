@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@mui/material";
 import CodelyModal from "../../../components/modal/CodelyModal";
 import UpdateTestCaseForm from "./UpdateTestCaseForm";
-import { TestCaseData } from "../problems/problemsApiSlice";
+import { TestCaseData } from "../problems/problemsAdminApiSlice";
 
 interface EditTestCaseButtonProps{
     testCase: TestCaseData;
