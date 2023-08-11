@@ -7,6 +7,7 @@ import { setUserLocalStorageData } from "../../../utils/storageHelpers";
 import AuthContainer from "./AuthContainer";
 import { RegisterRequest, useRegisterMutation } from "./authApiSlice";
 import { Role, getUser } from "../../../utils/tokenHelpers";
+import { getInitialRoute } from "../../../utils/navigateHelper";
 
 interface RegistrationFormData {
     email: string;
@@ -32,12 +33,7 @@ function RegistrationPage() {
     useEffect(() => {
         if(result.isSuccess) {
             setUserLocalStorageData(result.data);
-
-            var user= getUser();
-            if(user.userRole === Role.User){
-                navigate("/problems");
-            }
-            navigate("/admin/problems");
+            navigate(getInitialRoute());
         }
     },[result.isSuccess, result.data, navigate]);
 
