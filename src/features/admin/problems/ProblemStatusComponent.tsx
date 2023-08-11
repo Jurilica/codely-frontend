@@ -1,5 +1,5 @@
 import { Stack, Typography } from "@mui/material";
-import { ProblemStatus } from './problemsAdminApiSlice';
+import { ProblemStatus } from './problemsApiSlice';
 import Dot from "../../../components/generic/Dot";
 
 interface ProblemStatusComponentProps{

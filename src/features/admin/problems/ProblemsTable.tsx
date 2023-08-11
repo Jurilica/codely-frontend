@@ -1,7 +1,7 @@
 import { TableContainer, Table, TableHead, TableRow, TableCell, TableBody, Link, Paper, TablePagination} from "@mui/material";
 import { useState } from "react";
 import { Link as RouterLink} from "react-router-dom";
-import { GetProblemsData } from './problemsAdminApiSlice';
+import { GetProblemsData } from './problemsApiSlice';
 import { Column } from "../../../app/models";
 import ProblemStatusComponent  from "./ProblemStatusComponent";
 import EditProblemButton from "./EditProblemButton";

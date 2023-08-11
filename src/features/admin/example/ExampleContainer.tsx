@@ -1,7 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import AddExampleButton from "./AddExampleButton";
 import ExampleTable from "./ExampleTable";
-import { ExampleData } from "../problems/problemsAdminApiSlice";
+import { ExampleData } from "../problems/problemsApiSlice";
 
 interface ExampleContainerProps {
     examples: ExampleData[];

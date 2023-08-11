@@ -4,7 +4,7 @@ import { Column } from "../../../app/models";
 import { formatLength } from "../../../app/stringFormatter";
 import EditTestCaseButton from "./EditTestCaseButton";
 import DeleteTestCaseButton from "./DeleteTestCaseButton";
-import { TestCaseData } from "../problems/problemsAdminApiSlice";
+import { TestCaseData } from "../problems/problemsApiSlice";
   
 const columns: Column[] = [
     { id: 'id', label: 'Id', minWidth: 50 },

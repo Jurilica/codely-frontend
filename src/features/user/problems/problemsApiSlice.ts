@@ -1,6 +1,6 @@
 import { apiSlice } from "../../../app/apiSlice";
 
-export const problemsUserApiSlice = apiSlice.injectEndpoints({
+export const problemsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => {
         return {
             getProblems: builder.query<GetProblemsResponse, void>({
@@ -20,6 +20,10 @@ export const problemsUserApiSlice = apiSlice.injectEndpoints({
         }
     }
 });
+
+export const {
+    useGetProblemsQuery, 
+    useGetProblemQuery} = problemsApiSlice;
 
 export interface GetProblemsResponse {
     problems: GetProblemsData[];

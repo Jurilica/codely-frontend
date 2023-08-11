@@ -4,7 +4,7 @@ import { Column } from "../../../app/models";
 import { formatLength } from "../../../app/stringFormatter";
 import EditExampleButton from "./EditExampleButton";
 import DeleteExampleButton from "./DeleteExampleButton";
-import { ExampleData } from "../problems/problemsAdminApiSlice";
+import { ExampleData } from "../problems/problemsApiSlice";
   
 const columns: Column[] = [
     { id: 'id', label: 'Id', maxWidth: 50},
