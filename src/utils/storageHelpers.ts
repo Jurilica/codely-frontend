@@ -8,6 +8,11 @@ export const getRefreshToken = () => {
     return storage?.data?.refreshToken;
 };
 
+export const getRole = () => {
+    const storage = getUserLocalStorageData();
+    return storage?.data?.role;
+};
+
 function getUserLocalStorageData() {
     const stored = localStorage.getItem("user");
     if (!stored) {

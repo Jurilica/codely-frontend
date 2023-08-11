@@ -4,7 +4,7 @@ import { LoginRequest, useLoginMutation } from "./authApiSlice";
 import { useEffect } from "react";
 import CodelyTextField from "../../../components/form/CodelyTextField";
 import { useNavigate } from "react-router-dom";
-import { setUserLocalStorageData } from "../../../utils/storageHelpers";
+import { getRole, setUserLocalStorageData } from "../../../utils/storageHelpers";
 import AuthContainer from "./AuthContainer";
 
 interface LoginFormData {
@@ -29,7 +29,12 @@ function LoginPage() {
     useEffect(() => {
         if(result.isSuccess) {
             setUserLocalStorageData(result.data);
-            navigate("/problems");
+            
+            var userRole = getRole();
+            if(userRole === "User"){
+                navigate("/problems");
+            }
+            navigate("/admin/problems");
         }
 
     },[result.isSuccess, result.data, navigate]);
