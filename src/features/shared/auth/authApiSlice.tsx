@@ -8,21 +8,24 @@ export const authApiSlice = apiSlice.injectEndpoints({
                     url: "authentication/register",
                     method: "POST",
                     body: registerRequest
-                })
+                }),
+                invalidatesTags:['AdminProblem', 'AdminTestCase', 'AdminExample', 'UserProblem', 'UserSubmission']
             }),
             login: builder.mutation<AuthResponse, LoginRequest>({
                 query: (loginRequest) => ({
                     url: "authentication/login",
                     method: "POST",
                     body: loginRequest
-                })
+                }),
+                invalidatesTags:['AdminProblem', 'AdminTestCase', 'AdminExample', 'UserProblem', 'UserSubmission']
             }),
             refreshToken: builder.mutation<AuthResponse, RefreshTokenRequest>({
                 query: (refreshTokenRequest) => ({
                     url: "authentication/refresh-token",
                     method: "POST",
                     body: refreshTokenRequest
-                })
+                }),
+                invalidatesTags:['AdminProblem', 'AdminTestCase', 'AdminExample', 'UserProblem', 'UserSubmission']
             })
         };
     }

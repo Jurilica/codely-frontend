@@ -3,9 +3,10 @@ import { Field, Form, Formik } from "formik";
 import { useEffect } from "react";
 import CodelyTextField from "../../../components/form/CodelyTextField";
 import { useNavigate } from "react-router-dom";
-import { getRole, setUserLocalStorageData } from "../../../utils/storageHelpers";
+import { setUserLocalStorageData } from "../../../utils/storageHelpers";
 import AuthContainer from "./AuthContainer";
 import { RegisterRequest, useRegisterMutation } from "./authApiSlice";
+import { Role, getUser } from "../../../utils/tokenHelpers";
 
 interface RegistrationFormData {
     email: string;
@@ -31,9 +32,9 @@ function RegistrationPage() {
     useEffect(() => {
         if(result.isSuccess) {
             setUserLocalStorageData(result.data);
-            
-            var userRole = getRole();
-            if(userRole === "User"){
+
+            var user= getUser();
+            if(user.userRole === Role.User){
                 navigate("/problems");
             }
             navigate("/admin/problems");

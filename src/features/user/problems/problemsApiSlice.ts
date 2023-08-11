@@ -3,14 +3,14 @@ import { apiSlice } from "../../../app/apiSlice";
 export const problemsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => {
         return {
-            getProblems: builder.query<GetProblemsResponse, void>({
+            getUserProblems: builder.query<GetProblemsResponse, void>({
                 query: () => ({
                     url: "user/problems",
                     method: "GET"
                 }),
                 providesTags:['UserProblem']
             }),
-            getProblem: builder.query<GetProblemResponse, string>({
+            getUserProblem: builder.query<GetProblemResponse, string>({
                 query: (id) => ({
                     url: `user/problems/${id}`,
                     method: "GET"
@@ -22,8 +22,8 @@ export const problemsApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-    useGetProblemsQuery, 
-    useGetProblemQuery} = problemsApiSlice;
+    useGetUserProblemsQuery, 
+    useGetUserProblemQuery} = problemsApiSlice;
 
 export interface GetProblemsResponse {
     problems: GetProblemsData[];
@@ -53,8 +53,16 @@ export interface ExampleData {
 }
 
 export enum ProblemSubmissionStatus {
-    Unsolved="Unsolved",
-    Pending="Pending",
-    Succeeded="Succeeded",
-    Failed="Failed"
+    Unsolved = "Unsolved",
+    Pending = "Pending",
+    Succeeded = "Succeeded",
+    Failed = "Failed"
+}
+
+export enum ProgrammingLanguage {
+    C = "C",
+    Cpp = "Cpp",
+    Python = "Python",
+    JavaScript = "JavaScript",
+    Java = "Java"
 }

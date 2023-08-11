@@ -1,8 +1,8 @@
 import { getToken } from "./storageHelpers";
 
-enum Role {
-    Admin,
-    User
+export enum Role {
+    Admin = "Admin",
+    User = "User"
 };
 
 export class IUser {

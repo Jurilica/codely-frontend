@@ -1,7 +1,7 @@
 import { Grid, Typography } from '@mui/material';
 import { useParams } from 'react-router';
 import Loader from '../../../components/loader/Loader';
-import { useGetProblemQuery } from './problemsApiSlice';
+import { useGetAdminProblemQuery as useGetProblemQuery } from './problemsApiSlice';
 import TestCaseContainer from '../testcase/TestCaseContainer';
 import ProblemStatusComponent from './ProblemStatusComponent';
 import ExampleContainer from '../example/ExampleContainer';
@@ -13,7 +13,6 @@ function EditProblemPage() {
     let {id} = useParams();
     const {data,isLoading, isSuccess } = useGetProblemQuery(id!);
     
-
     return (
         <Grid container spacing={3} marginTop="20px" paddingX="20px">
             <Loader isLoading={isLoading} />

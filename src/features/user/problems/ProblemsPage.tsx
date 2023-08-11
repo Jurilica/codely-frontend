@@ -1,8 +1,23 @@
+import { Card, Grid, Typography } from "@mui/material";
+import { useGetUserProblemsQuery as useGetProblemsQuery } from "./problemsApiSlice";
+import Loader from "../../../components/loader/Loader";
+import ProblemsTable from "./ProblemsTable";
 
 function ProblemsPage(){
+    const {data, isLoading, isSuccess} = useGetProblemsQuery();
+
     return (
-        <>
-        </>
+        <Grid item xs={12} md={7} lg={8}>
+            <Loader isLoading={isLoading}/>
+            <Grid container alignItems="center" justifyContent="space-between">
+                <Grid item>
+                    <Typography variant="h5">Problems</Typography>
+                </Grid>
+            </Grid>
+            <Card sx={{ mt: 2 }}>
+               {isSuccess && <ProblemsTable data={data.problems}/>}
+            </Card>
+      </Grid>
     );
 };
 

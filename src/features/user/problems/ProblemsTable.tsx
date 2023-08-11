@@ -5,8 +5,9 @@ import { Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, Ta
 import { Link as RouterLink} from "react-router-dom";
 
 const columns : Column[] = [
-    {id:"1", label: "Title"},
-    {id:"2", label: "Status"}
+    {id:"1", label: "Id"},
+    {id:"3", label: "Title"},
+    {id:"4", label: "Status"}
 ];
 
 interface ProblemsTableData {

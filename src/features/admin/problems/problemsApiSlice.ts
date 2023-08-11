@@ -3,14 +3,14 @@ import { apiSlice } from "../../../app/apiSlice";
 export const problemsApiSlice = apiSlice.injectEndpoints({
     endpoints(builder) {
         return {
-            getProblems: builder.query<GetProblemsResponse, void>({
+            getAdminProblems: builder.query<GetProblemsResponse, void>({
                 query: () => ({
                     url: "admin/problems",
                     method: "GET"
                 }),
                 providesTags:['AdminProblem']
             }),
-            getProblem: builder.query<GetProblemResponse, string>({
+            getAdminProblem: builder.query<GetProblemResponse, string>({
                 query: (id) => ({
                     url: `admin/problems/${id}`,
                     method: "GET"
@@ -63,8 +63,8 @@ export const {
     useUpdateProblemMutation,
     usePublishProblemMutation,
     useUnpublishProblemMutation,
-    useGetProblemsQuery, 
-    useGetProblemQuery, 
+    useGetAdminProblemsQuery, 
+    useGetAdminProblemQuery, 
     useArchiveProblemMutation} = problemsApiSlice;
 
 export interface CreateProblemRequest {
