@@ -1,6 +1,6 @@
 import { BaseQueryFn, FetchArgs, FetchBaseQueryError, createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { toast } from 'react-toastify';
-import { RefreshTokenRequest } from '../features/auth/authApiSlice';
+import { RefreshTokenRequest } from '../features/shared/auth/authApiSlice';
 import { Mutex } from 'async-mutex';
 import { getRefreshToken, getToken, removeUserLocalStorageData, setUserLocalStorageData } from '../utils/storageHelpers';
 
