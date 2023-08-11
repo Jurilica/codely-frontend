@@ -9,7 +9,7 @@ export const examplesAdminApiSlice = apiSlice.injectEndpoints({
                     method: "POST",
                     body: testCase
                 }),
-                invalidatesTags:['Example']
+                invalidatesTags:['AdminExample']
             }),
             updateExample : builder.mutation<UpdateExampleResponse, UpdateExampleRequest>({
                 query: (testCase) => ({
@@ -17,14 +17,14 @@ export const examplesAdminApiSlice = apiSlice.injectEndpoints({
                     method: "PUT",
                     body: testCase
                 }),
-                invalidatesTags:['Example']
+                invalidatesTags:['AdminExample']
             }),
             archiveExample: builder.mutation<ArchiveExampleResponse, string>({
                 query: (id) => ({
                     url: `admin/examples/${id}`,
                     method: "DELETE"
                 }),
-                invalidatesTags:['Example']
+                invalidatesTags:['AdminExample']
             })
         }
     }
@@ -58,7 +58,3 @@ export interface UpdateExampleResponse {
 
 export interface ArchiveExampleResponse {
 }
-
-
-
-

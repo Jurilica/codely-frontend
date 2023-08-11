@@ -8,14 +8,14 @@ export const problemsAdminApiSlice = apiSlice.injectEndpoints({
                     url: "admin/problems",
                     method: "GET"
                 }),
-                providesTags:['Problem']
+                providesTags:['AdminProblem']
             }),
             getProblem: builder.query<GetProblemResponse, string>({
                 query: (id) => ({
                     url: `admin/problems/${id}`,
                     method: "GET"
                 }),
-                providesTags:['Problem', 'TestCase', 'Example']
+                providesTags:['AdminProblem', 'AdminTestCase', 'AdminExample']
             }), 
             addProblem: builder.mutation<CreateProblemResponse, CreateProblemRequest>({
                 query: (problem) => ({
@@ -23,7 +23,7 @@ export const problemsAdminApiSlice = apiSlice.injectEndpoints({
                     method: "POST",
                     body: problem
                 }),
-                invalidatesTags:['Problem']
+                invalidatesTags:['AdminProblem']
             }),
             updateProblem : builder.mutation<UpdateProblemResponse, UpdateProblemRequest>({
                 query: (problem) => ({
@@ -31,28 +31,28 @@ export const problemsAdminApiSlice = apiSlice.injectEndpoints({
                     method: "PUT",
                     body: problem
                 }),
-                invalidatesTags:['Problem']
+                invalidatesTags:['AdminProblem']
             }),
             publishProblem : builder.mutation<PublishProblemResponse, string>({
                 query: (id) => ({
                     url: `admin/problems/${id}/publish`,
                     method: "PUT"
                 }),
-                invalidatesTags:['Problem']
+                invalidatesTags:['AdminProblem']
             }),
             unpublishProblem : builder.mutation<UnpublishProblemResponse, string>({
                 query: (id) => ({
                     url: `admin/problems/${id}/unpublish`,
                     method: "PUT"
                 }),
-                invalidatesTags:['Problem']
+                invalidatesTags:['AdminProblem']
             }),
             archiveProblem: builder.mutation<ArchiveProblemResponse, string>({
                 query: (id) => ({
                     url: `admin/problems/${id}`,
                     method: "DELETE"
                 }),
-                invalidatesTags:['Problem']
+                invalidatesTags:['AdminProblem']
             })
         }
     }
@@ -137,6 +137,3 @@ export enum ProblemStatus {
 
 export interface ArchiveProblemResponse {
 }
-
-
-

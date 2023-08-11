@@ -8,7 +8,7 @@ export const testCasesAdminApiSlice = apiSlice.injectEndpoints({
                     url: `admin/problems/${id}`,
                     method: "DELETE"
                 }),
-                invalidatesTags:['Problem']
+                invalidatesTags:['AdminProblem']
             }),
             addTestCase : builder.mutation<CreateTestCaseResponse, CreateTestCaseRequest>({
                 query: (testCase) => ({
@@ -16,7 +16,7 @@ export const testCasesAdminApiSlice = apiSlice.injectEndpoints({
                     method: "POST",
                     body: testCase
                 }),
-                invalidatesTags:['TestCase']
+                invalidatesTags:['AdminTestCase']
             }),
             updateTestCase : builder.mutation<UpdateTestCaseResponse, UpdateTestCaseRequest>({
                 query: (testCase) => ({
@@ -24,14 +24,14 @@ export const testCasesAdminApiSlice = apiSlice.injectEndpoints({
                     method: "PUT",
                     body: testCase
                 }),
-                invalidatesTags:['TestCase']
+                invalidatesTags:['AdminTestCase']
             }),
             archiveTestCase: builder.mutation<ArchiveTestCaseResponse, string>({
                 query: (id) => ({
                     url: `admin/test-cases/${id}`,
                     method: "DELETE"
                 }),
-                invalidatesTags:['TestCase']
+                invalidatesTags:['AdminTestCase']
             })
         }
     }
@@ -66,7 +66,3 @@ export interface UpdateTestCaseResponse {
 
 export interface ArchiveTestCaseResponse {
 }
-
-
-
-

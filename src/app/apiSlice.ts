@@ -91,6 +91,6 @@ export const baseQueryWithErrorAndReauthHandling: BaseQueryFn<
 
 export const apiSlice = createApi({
     baseQuery: baseQueryWithErrorAndReauthHandling,
-    tagTypes: ['Problem', 'TestCase', 'Example'],
+    tagTypes: ['AdminProblem', 'AdminTestCase', 'AdminExample', 'UserProblem', 'UserSubmission'],
     endpoints: () => ({})
 });
