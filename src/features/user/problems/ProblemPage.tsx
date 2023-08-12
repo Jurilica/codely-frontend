@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { ProgrammingLanguage, useGetUserProblemQuery} from "./problemsApiSlice";
-import { Button, Grid } from "@mui/material";
+import { Button, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent } from "@mui/material";
 import Loader from "../../../components/loader/Loader";
 import CodeEditor from "./CodeEditor";
 import { useState } from "react";
@@ -13,7 +13,7 @@ const cTemplate = '// Your C code\n' +
     '\n' +
     'int main() {\n' +
     '\tprintf("Hello, World!");\n' +
-    '\treturn 0\n;' +
+    '\treturn 0;\n' +
     '}';
 
 const cppTemplate = '// Your C++ code\n' +
@@ -52,15 +52,16 @@ const codeTemplate = (programmingLanguage:ProgrammingLanguage) => {
     }
 }
 
+const languageValues = Object.values(ProgrammingLanguage);
+
 function ProblemPage(){
     let {id} = useParams();
     const {data, isLoading, isSuccess } = useGetUserProblemQuery(id!);
-    const [code, setCode] = useState(codeTemplate(ProgrammingLanguage.Cpp));
+    const [language, setLanguage] = useState(ProgrammingLanguage.Cpp);
+    const [code, setCode] = useState(codeTemplate(language));
     const [submitAnswer, result] = useSubmitAnswerMutation();
 
     const handleSubmit = () => {
-        console.log(code);
-
         var submitAnswerRequest: SubmitAnswerRequest = {
             problemId: Number(id),
             answer: code,
@@ -70,16 +71,39 @@ function ProblemPage(){
         submitAnswer(submitAnswerRequest);
     };
 
+    const handleLanguageChange = (event: SelectChangeEvent) => {
+        let value = event.target.value as string;
+        let selectedLanguage: ProgrammingLanguage = ProgrammingLanguage[value as keyof typeof ProgrammingLanguage];
+        setLanguage(selectedLanguage);
+        setCode(codeTemplate(selectedLanguage));
+    };
+
     return (
         <Grid container >
             <Loader isLoading={isLoading}/>
-            <Grid item xs={12} md={6} lg={6} paddingX="15px" overflow="scroll">
+            <Grid item xs={12} md={6} lg={6} paddingX="15px" overflow="scroll" minHeight="500px" maxHeight="80vh">
                 <ProblemDescription title={data?.problem.title ?? ""} description={data?.problem.description ?? ""} />
                 <ExampleContainer examples={data?.problem.examples ?? []}/>
             </Grid>
-            <Grid item xs={12} md={6} lg={6}>
-                <CodeEditor programmingLanguage={ProgrammingLanguage.Cpp} code={code} setCode={setCode}/>
-                <Grid textAlign="right" padding="20px" sx={{backgroundColor:"#0d1117"}}>
+            <Grid item xs={12} md={6} lg={6} minHeight="500px" maxHeight="80vh">
+                <CodeEditor programmingLanguage={language} code={code} setCode={setCode}/>
+                <Grid textAlign="right" padding="20px" sx={{backgroundColor:"#0d1117"}} justifyContent="center">
+                    <FormControl>
+                        <InputLabel id="language-select-label" sx={{color:"white"}}>Language</InputLabel>
+                        <Select
+                            label="Language"
+                            labelId="language-select-label"
+                            sx={{color:"white", marginRight: "20px", textAlign:"left", width:"200px"}}
+                            defaultValue={language}
+                            onChange={handleLanguageChange}
+                            value={language}
+                        >
+                            {languageValues.map(language => 
+                                    <MenuItem value={language} key={language}>{language}</MenuItem>
+                                )
+                            }
+                        </Select>
+                    </FormControl>
                     <Button variant="contained" onClick={handleSubmit}>Submit</Button>
                 </Grid>
             </Grid>

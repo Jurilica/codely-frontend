@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { setUserLocalStorageData } from "../../../utils/storageHelpers";
 import AuthContainer from "./AuthContainer";
 import { RegisterRequest, useRegisterMutation } from "./authApiSlice";
-import { Role, getUser } from "../../../utils/tokenHelpers";
 import { getInitialRoute } from "../../../utils/navigateHelper";
 
 interface RegistrationFormData {
