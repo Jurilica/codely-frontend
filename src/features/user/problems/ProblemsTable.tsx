@@ -1,13 +1,12 @@
 import { useState } from "react";
 import { Column } from "../../../app/models";
 import { GetProblemsData } from "./problemsApiSlice";
-import { Link, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@mui/material";
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@mui/material";
 import { Link as RouterLink} from "react-router-dom";
 
 const columns : Column[] = [
-    {id:"1", label: "Id"},
-    {id:"3", label: "Title"},
-    {id:"4", label: "Status"}
+    {id:"1", label: "Title"},
+    {id:"2", label: "Status"}
 ];
 
 interface ProblemsTableData {
@@ -49,12 +48,7 @@ function ProblemsTable({data}:ProblemsTableData) {
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
                         return (
-                        <TableRow hover tabIndex={-1} key={row.id}>
-                            <TableCell component="th" scope="row" align="left">
-                                <Link color="secondary" component={RouterLink} to={`/problems/${row.id}`} style={{textDecoration: "none"}}>
-                                    {row.id}
-                                </Link>
-                            </TableCell>
+                        <TableRow hover tabIndex={-1} key={row.id} component={RouterLink} to={`/problems/${row.id}`} style={{textDecoration: "none"}}>
                             <TableCell align="left">
                                 {row.title}
                             </TableCell>

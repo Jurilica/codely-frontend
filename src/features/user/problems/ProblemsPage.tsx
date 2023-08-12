@@ -1,13 +1,15 @@
 import { Card, Grid, Typography } from "@mui/material";
-import { useGetUserProblemsQuery as useGetProblemsQuery } from "./problemsApiSlice";
+import { useGetUserProblemsQuery } from "./problemsApiSlice";
 import Loader from "../../../components/loader/Loader";
 import ProblemsTable from "./ProblemsTable";
 
 function ProblemsPage(){
-    const {data, isLoading, isSuccess} = useGetProblemsQuery();
+    const {data, isLoading, isSuccess} = useGetUserProblemsQuery(undefined,{
+        pollingInterval: 10_000,
+      });
 
     return (
-        <Grid item xs={12} md={7} lg={8}>
+        <Grid item>
             <Loader isLoading={isLoading}/>
             <Grid container alignItems="center" justifyContent="space-between">
                 <Grid item>

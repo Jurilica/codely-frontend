@@ -12,7 +12,7 @@ function ProblemStatusComponent({status, fontWeight='normal', fontSize='1rem', d
     return (
         <Stack direction="row" spacing={1} alignItems="center">
             <Dot color={status === ProblemStatus.Published ? "green" : "red"} size={dotSize}/>
-            <Typography sx={{fontWeight:{fontWeight}, fontSize:{fontSize}}}>{status}</Typography>
+            <Typography color="text.secondary" sx={{fontWeight:{fontWeight}, fontSize:{fontSize}}}>{status}</Typography>
         </Stack>
     );
 };

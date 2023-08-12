@@ -21,13 +21,13 @@ function EditProblemPage() {
                     <Grid item lg={7}>
                         <Grid container direction="column" spacing={2} paddingX="10px">
                             <Grid container direction="row" justifyContent="space-between">                               
-                                <Typography variant="h3" component="h3" sx={{fontWeight:"bold", fontSize:"2.5rem"}}>{data?.problem.id}. {data?.problem.title}</Typography>
+                                <Typography variant="h3" component="h3" fontWeight="bold" fontSize="2.5rem">{data?.problem.id}. {data?.problem.title}</Typography>
                             </Grid>
                             <Grid item marginTop="10px">
                                 <ProblemStatusComponent status={data.problem.problemStatus} fontWeight="medium" fontSize="1.3rem"/>
                             </Grid>
                             <Grid item height="410px" overflow="scroll">
-                                <Typography sx={{fontWeight:"medium", fontSize:"1.2rem", whiteSpace: "pre-line"}}>
+                                <Typography color="text.secondary" fontSize="1.2rem"  whiteSpace="pre-line">
                                     {data?.problem.description}
                                 </Typography>
                             </Grid>

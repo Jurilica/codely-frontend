@@ -58,7 +58,7 @@ function ProblemsTable({data}:ProblemsTableData) {
                         return (
                         <TableRow hover tabIndex={-1} key={row.id}>
                             <TableCell component="th" scope="row" align="left">
-                                <Link color="secondary" component={RouterLink} to={`/problems/${row.id}`} style={{textDecoration: "none"}}>
+                                <Link color="secondary" component={RouterLink} to={`/admin/problems/${row.id}`} style={{textDecoration: "none"}}>
                                     {row.id}
                                 </Link>
                             </TableCell>

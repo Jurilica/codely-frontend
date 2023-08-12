@@ -8,7 +8,7 @@ export const problemsApiSlice = apiSlice.injectEndpoints({
                     url: "user/problems",
                     method: "GET"
                 }),
-                providesTags:['UserProblem']
+                providesTags:['UserProblem', 'UserSubmission']
             }),
             getUserProblem: builder.query<GetProblemResponse, string>({
                 query: (id) => ({
@@ -36,6 +36,7 @@ export interface GetProblemsData {
 }
 
 export interface GetProblemResponse {
+    problem: GetProblemData;
 }
 
 export interface GetProblemData {

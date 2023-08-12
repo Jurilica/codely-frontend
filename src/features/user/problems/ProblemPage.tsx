@@ -1,9 +1,12 @@
 import { useParams } from "react-router-dom";
-import { ProgrammingLanguage, useGetUserProblemQuery as useGetUserProblemQuery } from "./problemsApiSlice";
-import { Grid } from "@mui/material";
+import { ProgrammingLanguage, useGetUserProblemQuery} from "./problemsApiSlice";
+import { Button, Grid } from "@mui/material";
 import Loader from "../../../components/loader/Loader";
 import CodeEditor from "./CodeEditor";
 import { useState } from "react";
+import ProblemDescription from "./ProblemDescription";
+import ExampleContainer from "../examples/ExampleContainer";
+import { SubmitAnswerRequest, useSubmitAnswerMutation } from "../submission/submissionApiSlice";
 
 const cTemplate = '// Your C code\n' +
     '#include <stdio.h>\n' +
@@ -51,13 +54,35 @@ const codeTemplate = (programmingLanguage:ProgrammingLanguage) => {
 
 function ProblemPage(){
     let {id} = useParams();
-    const {data,isLoading, isSuccess } = useGetUserProblemQuery(id!);
-    const [code, setCode] = useState(codeTemplate(ProgrammingLanguage.Java));
+    const {data, isLoading, isSuccess } = useGetUserProblemQuery(id!);
+    const [code, setCode] = useState(codeTemplate(ProgrammingLanguage.Cpp));
+    const [submitAnswer, result] = useSubmitAnswerMutation();
+
+    const handleSubmit = () => {
+        console.log(code);
+
+        var submitAnswerRequest: SubmitAnswerRequest = {
+            problemId: Number(id),
+            answer: code,
+            programmingLanguage: ProgrammingLanguage.Cpp
+        };
+
+        submitAnswer(submitAnswerRequest);
+    };
 
     return (
-        <Grid item xs={12} md={7} lg={8}>
+        <Grid container >
             <Loader isLoading={isLoading}/>
-            <CodeEditor programmingLanguage={ProgrammingLanguage.Cpp} code={code} setCode={setCode}/>
+            <Grid item xs={12} md={6} lg={6} paddingX="15px">
+                <ProblemDescription title={data?.problem.title ?? ""} description={data?.problem.description ?? ""} />
+                <ExampleContainer examples={data?.problem.examples ?? []}/>
+            </Grid>
+            <Grid item xs={12} md={6} lg={6}>
+                <CodeEditor programmingLanguage={ProgrammingLanguage.Cpp} code={code} setCode={setCode}/>
+                <Grid textAlign="center">
+                    <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+                </Grid>
+            </Grid>
       </Grid>
     );
 };
