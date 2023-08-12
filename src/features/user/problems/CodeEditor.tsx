@@ -1,5 +1,5 @@
 import { ProgrammingLanguage } from "./problemsApiSlice";
-import { useState } from "react";
+import { githubDark } from '@uiw/codemirror-theme-github';
 import CodeMirror from "@uiw/react-codemirror";
 import { python } from "@codemirror/lang-python";
 import { javascript } from "@codemirror/lang-javascript";
@@ -35,6 +35,7 @@ function CodeEditor({programmingLanguage, code, setCode}: CodeEditorProps){
         <CodeMirror
             value={code}
             height="80vh"
+            theme={githubDark}
             placeholder="Write your code here"
             extensions={[codeMirrorLanguage(programmingLanguage)]}
             onChange={(value) => {

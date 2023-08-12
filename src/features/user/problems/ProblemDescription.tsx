@@ -12,11 +12,17 @@ function ProblemDescription({title, description}: ProblemDescriptionProps){
                 component="h1"
                 variant="h2"
                 color="text.primary"
+                fontSize="1.8rem"
+                fontWeight="bold"
                 gutterBottom
                 >
                 {title}
             </Typography>
-        <Typography variant="h5" color="text.secondary" component="p">
+        <Typography 
+            variant="h5" 
+            color="text.secondary" 
+            component="p"
+            fontSize="1.2rem" >
           {description}
         </Typography>
       </Container>

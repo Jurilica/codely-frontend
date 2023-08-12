@@ -16,8 +16,7 @@ export const submissionApiSlice = apiSlice.injectEndpoints({
     }
 });
 
-export const {
-    useSubmitAnswerMutation} = submissionApiSlice;
+export const {useSubmitAnswerMutation} = submissionApiSlice;
 
 export interface SubmitAnswerRequest {
     problemId: number;
@@ -26,4 +25,5 @@ export interface SubmitAnswerRequest {
 }
 
 export interface SubmitAnswerResponse {
+    submissionId: number;
 }

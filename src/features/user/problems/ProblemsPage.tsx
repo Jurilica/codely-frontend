@@ -5,7 +5,7 @@ import ProblemsTable from "./ProblemsTable";
 
 function ProblemsPage(){
     const {data, isLoading, isSuccess} = useGetUserProblemsQuery(undefined,{
-        pollingInterval: 10_000,
+        pollingInterval: 5_000,
       });
 
     return (

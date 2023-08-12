@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Column } from "../../../app/models";
 import { GetProblemsData } from "./problemsApiSlice";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@mui/material";
-import { Link as RouterLink} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const columns : Column[] = [
     {id:"1", label: "Title"},
@@ -16,6 +16,7 @@ interface ProblemsTableData {
 function ProblemsTable({data}:ProblemsTableData) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
+    const navigate = useNavigate();
   
     const handleChangePage = (event: unknown, newPage: number) => {
       setPage(newPage);
@@ -25,6 +26,10 @@ function ProblemsTable({data}:ProblemsTableData) {
       setRowsPerPage(+event.target.value);
       setPage(0);
     };
+
+    const handleClick = (id:number) => {
+        navigate(`/problems/${id}`);
+    }
 
     return (
         <Paper sx={{ width: '100%', overflow:'hidden'}}>
@@ -48,7 +53,7 @@ function ProblemsTable({data}:ProblemsTableData) {
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
                         return (
-                        <TableRow hover tabIndex={-1} key={row.id} component={RouterLink} to={`/problems/${row.id}`} style={{textDecoration: "none"}}>
+                        <TableRow hover tabIndex={-1} key={row.id} onClick={() => handleClick(row.id)}>
                             <TableCell align="left">
                                 {row.title}
                             </TableCell>

@@ -73,13 +73,13 @@ function ProblemPage(){
     return (
         <Grid container >
             <Loader isLoading={isLoading}/>
-            <Grid item xs={12} md={6} lg={6} paddingX="15px">
+            <Grid item xs={12} md={6} lg={6} paddingX="15px" overflow="scroll">
                 <ProblemDescription title={data?.problem.title ?? ""} description={data?.problem.description ?? ""} />
                 <ExampleContainer examples={data?.problem.examples ?? []}/>
             </Grid>
             <Grid item xs={12} md={6} lg={6}>
                 <CodeEditor programmingLanguage={ProgrammingLanguage.Cpp} code={code} setCode={setCode}/>
-                <Grid textAlign="center">
+                <Grid textAlign="right" padding="20px" sx={{backgroundColor:"#0d1117"}}>
                     <Button variant="contained" onClick={handleSubmit}>Submit</Button>
                 </Grid>
             </Grid>
