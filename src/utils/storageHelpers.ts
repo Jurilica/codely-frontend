@@ -1,5 +1,3 @@
-import { ProgrammingLanguage } from "../models/ProgrammingLanguage";
-
 export const getToken = (): string => {
     const storage = getUserLocalStorageData();
     return storage?.data?.token;

@@ -1,4 +1,5 @@
 import { apiSlice } from "../../../app/apiSlice";
+import { ProblemSubmissionStatus } from "../../../models/ProblemSubmissionStatus";
 
 export const problemsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => {
@@ -51,11 +52,4 @@ export interface ExampleData {
     input: string;
     output: string;
     explanation: string;
-}
-
-export enum ProblemSubmissionStatus {
-    Unsolved = "Unsolved",
-    Pending = "Pending",
-    Succeeded = "Succeeded",
-    Failed = "Failed"
 }

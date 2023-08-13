@@ -8,6 +8,7 @@ import ProblemDescription from "./ProblemDescription";
 import ExampleContainer from "../examples/ExampleContainer";
 import { useAppDisptach } from "../../../app/hooks";
 import { setDefaultCode } from "../codeEditor/codeEditorSlice";
+import SubmissionsContainer from "../submission/SubmissionContainer";
 
 function ProblemPage(){
     const dispatch = useAppDisptach();
@@ -35,13 +36,17 @@ function ProblemPage(){
                     </Tabs>
                 </Box>
                 {tab === 0 &&
-                <>
-                    <ProblemDescription title={data?.problem.title ?? ""} description={data?.problem.description ?? ""} />
-                    <ExampleContainer examples={data?.problem.examples ?? []}/>
-                </>}
+                    <>
+                        <ProblemDescription title={data?.problem.title ?? ""} description={data?.problem.description ?? ""} />
+                        <ExampleContainer examples={data?.problem.examples ?? []}/>
+                    </>}
+                {tab === 1 &&
+                    <>
+                        <SubmissionsContainer problemId={Number(id)} />
+                    </>}
             </Grid>
             <Grid item xs={12} md={6} lg={6} minHeight="500px" height="90vh">
-                <CodeEditor id={Number(id)}/>
+                <CodeEditor problemId={Number(id)}/>
             </Grid>
       </Grid>
     );

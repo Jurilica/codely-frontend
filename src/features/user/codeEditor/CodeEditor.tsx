@@ -26,15 +26,15 @@ const codeMirrorLanguage = (programmingLanguage: ProgrammingLanguage) => {
         case ProgrammingLanguage.Java:
             return java();
         default: 
-            return python();
+            return cpp();
     }
 }
 
 export interface CodeEditorProps{
-    id: number;
+    problemId: number;
 }
 
-function CodeEditor({id}: CodeEditorProps){
+function CodeEditor({problemId}: CodeEditorProps){
     const programmingLanguage = useSelector((state: RootState) => state.codeEditor.programmingLanguage);
     const code = useSelector((state: RootState) => state.codeEditor.code);
     const dispatch = useAppDisptach();
@@ -42,7 +42,7 @@ function CodeEditor({id}: CodeEditorProps){
 
     const handleSubmit = () => {
         var submitAnswerRequest: SubmitAnswerRequest = {
-            problemId: Number(id),
+            problemId: problemId,
             answer: code,
             programmingLanguage: programmingLanguage
         };
@@ -56,21 +56,21 @@ function CodeEditor({id}: CodeEditorProps){
 
     return (
         <>
-        <Grid>
-            <CodeMirror
-                value={code}
-                theme={githubDark}
-                minHeight="400px"
-                height="calc(90vh - 96px)"
-                placeholder="Write your code here"
-                extensions={[codeMirrorLanguage(programmingLanguage)]}
-                onChange={(value) => { handleCodeChange(value);}}
-            />
-        </Grid>
-        <Grid textAlign="right" padding="20px" sx={{backgroundColor:"#0d1117"}} justifyContent="center" height="96px">
-            <LanguageSelector />
-            <Button variant="contained" onClick={handleSubmit} disabled={result.isLoading}>Submit</Button>
-        </Grid>
+            <Grid>
+                <CodeMirror
+                    value={code}
+                    theme={githubDark}
+                    minHeight="400px"
+                    height="calc(90vh - 96px)"
+                    placeholder="Write your code here"
+                    extensions={[codeMirrorLanguage(programmingLanguage)]}
+                    onChange={(value) => { handleCodeChange(value);}}
+                />
+            </Grid>
+            <Grid textAlign="right" padding="20px" sx={{backgroundColor:"#0d1117"}} justifyContent="center" height="96px">
+                <LanguageSelector />
+                <Button variant="contained" onClick={handleSubmit} disabled={result.isLoading}>Submit</Button>
+            </Grid>
         </>
     );
 };
