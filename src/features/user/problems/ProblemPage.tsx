@@ -65,7 +65,7 @@ function ProblemPage(){
         var submitAnswerRequest: SubmitAnswerRequest = {
             problemId: Number(id),
             answer: code,
-            programmingLanguage: ProgrammingLanguage.Cpp
+            programmingLanguage: language
         };
 
         submitAnswer(submitAnswerRequest);
@@ -79,16 +79,18 @@ function ProblemPage(){
     };
 
     return (
-        <Grid container >
+        <Grid container alignItems="stretch" height="100%">
             <Loader isLoading={isLoading}/>
-            <Grid item xs={12} md={6} lg={6} paddingX="15px" overflow="scroll" minHeight="500px" maxHeight="80vh">
+            <Grid item xs={12} md={6} lg={6} paddingX="15px" minHeight="500px" height="90vh" sx={{overflowY:"scroll"}} marginBottom="10px">
                 <ProblemDescription title={data?.problem.title ?? ""} description={data?.problem.description ?? ""} />
                 <ExampleContainer examples={data?.problem.examples ?? []}/>
             </Grid>
-            <Grid item xs={12} md={6} lg={6} minHeight="500px" maxHeight="80vh">
-                <CodeEditor programmingLanguage={language} code={code} setCode={setCode}/>
-                <Grid textAlign="right" padding="20px" sx={{backgroundColor:"#0d1117"}} justifyContent="center">
-                    <FormControl>
+            <Grid item xs={12} md={6} lg={6} minHeight="500px" height="90vh">
+                <Grid>
+                    <CodeEditor programmingLanguage={language} code={code} setCode={setCode}/>
+                </Grid>
+                <Grid textAlign="right" padding="20px" sx={{backgroundColor:"#0d1117"}} justifyContent="center" height="96px">
+                    <FormControl >
                         <InputLabel id="language-select-label" sx={{color:"white"}}>Language</InputLabel>
                         <Select
                             label="Language"
@@ -104,7 +106,7 @@ function ProblemPage(){
                             }
                         </Select>
                     </FormControl>
-                    <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+                    <Button variant="contained" onClick={handleSubmit} disabled={result.isLoading}>Submit</Button>
                 </Grid>
             </Grid>
       </Grid>

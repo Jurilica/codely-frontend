@@ -34,8 +34,9 @@ function CodeEditor({programmingLanguage, code, setCode}: CodeEditorProps){
     return (
         <CodeMirror
             value={code}
-            height="80vh"
             theme={githubDark}
+            minHeight="400px"
+            height="calc(90vh - 96px)"
             placeholder="Write your code here"
             extensions={[codeMirrorLanguage(programmingLanguage)]}
             onChange={(value) => {
