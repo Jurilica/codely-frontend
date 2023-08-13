@@ -65,6 +65,7 @@ function CodelyTable({columns, data, tableType,sx, rowsPerPageOptions, initalNum
                                 case TableType.UserProblem : return <UserProblemRow row={row}/>;
                                 case TableType.UserSubmission : return <SubmissionRow row={row}/>;
                             }
+                            return <></>;
                         })}
                     </TableBody>
                 </Table>

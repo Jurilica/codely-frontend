@@ -1,8 +1,5 @@
-import { useState } from "react";
 import { Column } from "../../../app/models";
 import { GetProblemsData } from "./problemsApiSlice";
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import CodelyTable, { TableType } from "../../../components/table/CodelyTable";
 
 const columns : Column[] = [
