@@ -6,7 +6,7 @@ interface SubmissionsContainerProps {
 }
 
 function SubmissionsContainer({problemId}:SubmissionsContainerProps ){
-    const {data, isLoading, isSuccess} = useGetSubmissionsQuery(Number(problemId),{
+    const {data} = useGetSubmissionsQuery(Number(problemId),{
         pollingInterval: 2_500,
       });
 
