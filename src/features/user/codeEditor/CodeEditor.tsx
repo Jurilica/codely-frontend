@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
 import { useAppDisptach } from "../../../app/hooks";
 import { setCode } from "./codeEditorSlice";
-import { ProgrammingLanguage } from '../../../models/ProgrammingLanguage';
+import { ProgrammingLanguage } from '../../../app/enums';
 
 const codeMirrorLanguage = (programmingLanguage: ProgrammingLanguage) => {
     switch(programmingLanguage){

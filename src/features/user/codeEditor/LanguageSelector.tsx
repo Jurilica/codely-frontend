@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
 import { useAppDisptach } from "../../../app/hooks";
 import { setDefaultCode, setProgrammingLanguage } from "./codeEditorSlice";
-import { ProgrammingLanguage } from "../../../models/ProgrammingLanguage";
+import { ProgrammingLanguage } from "../../../app/enums";
 
 function LanguageSelector(){
     const language = useSelector((state: RootState) => state.codeEditor.programmingLanguage);

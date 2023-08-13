@@ -1,4 +1,5 @@
-import { ProgrammingLanguage } from "../models/ProgrammingLanguage";
+import { ProgrammingLanguage } from "../app/enums";
+
 
 const cTemplate = '// Your C code\n' +
     '#include <stdio.h>\n' +

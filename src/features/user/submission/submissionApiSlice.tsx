@@ -1,6 +1,5 @@
 import { apiSlice } from "../../../app/apiSlice";
-import { ProblemSubmissionStatus } from "../../../models/ProblemSubmissionStatus";
-import { ProgrammingLanguage } from "../../../models/ProgrammingLanguage";
+import { ProblemSubmissionStatus, ProgrammingLanguage } from "../../../app/enums";
 
 export const submissionApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => {

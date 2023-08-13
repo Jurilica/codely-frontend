@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { codeTemplate } from "../../../utils/codeEditorHelpers";
-import { ProgrammingLanguage } from "../../../models/ProgrammingLanguage";
+import { ProgrammingLanguage } from "../../../app/enums";
 
 interface CodeEditorState {
     programmingLanguage: ProgrammingLanguage;

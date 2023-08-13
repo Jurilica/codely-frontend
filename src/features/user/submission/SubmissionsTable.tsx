@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Column } from "../../../app/models";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow } from "@mui/material";
 import { GetSubmissionData } from "./submissionApiSlice";
-import { ProgrammingLanguage } from "../../../models/ProgrammingLanguage";
 import { useAppDisptach } from "../../../app/hooks";
 import { setCode, setProgrammingLanguage } from "../codeEditor/codeEditorSlice";
+import { ProgrammingLanguage } from "../../../app/enums";
 
 const columns : Column[] = [
     {id:"1", label: "Status"},
