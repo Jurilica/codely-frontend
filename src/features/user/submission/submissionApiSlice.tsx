@@ -1,5 +1,5 @@
 import { apiSlice } from "../../../app/apiSlice";
-import { ProgrammingLanguage } from "../problems/problemsApiSlice";
+import { ProgrammingLanguage } from "../../../models/ProgrammingLanguage";
 
 export const submissionApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => {

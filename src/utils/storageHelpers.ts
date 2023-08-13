@@ -1,3 +1,5 @@
+import { ProgrammingLanguage } from "../models/ProgrammingLanguage";
+
 export const getToken = (): string => {
     const storage = getUserLocalStorageData();
     return storage?.data?.token;
@@ -7,6 +9,7 @@ export const getRefreshToken = () => {
     const storage = getUserLocalStorageData();
     return storage?.data?.refreshToken;
 };
+
 function getUserLocalStorageData() {
     const stored = localStorage.getItem("user");
     if (!stored) {
