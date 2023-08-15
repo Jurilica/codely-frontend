@@ -13,7 +13,17 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-const pages = ['Problems'];
+interface LinkData{
+  name: string;
+  href: string;
+}
+
+const pages: LinkData[] = [
+  {
+    name: "Problems",
+    href: "/problems"
+  }];
+
 const settings = ['Account', 'Logout'];
 
 function Navigation() {
@@ -37,9 +47,8 @@ function Navigation() {
 
   return (
     <AppBar position="static">
-      <Container sx={{maxWidth: "1200px"}}>
+      <Container sx={{maxWidth: "1400px"}}>
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -88,8 +97,13 @@ function Navigation() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
+                  <Typography 
+                    textAlign="center" 
+                    href={page.href} 
+                    component="a">
+                      {page.name}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -116,11 +130,12 @@ function Navigation() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.name}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
+                href={page.href}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>

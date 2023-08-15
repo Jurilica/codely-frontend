@@ -6,7 +6,7 @@ function Layout() {
     return (
        <Grid container>
             <Navigation />
-            <Grid width="100%" height="100%" padding="20px" maxWidth="1200px" marginX="auto">
+            <Grid width="100%" height="100%" padding="20px" maxWidth="1400px" marginX="auto">
                 <Outlet />
             </Grid>
        </Grid>
