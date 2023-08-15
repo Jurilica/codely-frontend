@@ -28,7 +28,7 @@ function ProblemPage(){
     return (
         <Grid container alignItems="stretch" height="100%">
             <Loader isLoading={isLoading}/>
-            <Grid item xs={12} md={6} lg={6} paddingX="15px" minHeight="500px" height="90vh" sx={{overflowY:"scroll"}} marginBottom="10px">
+            <Grid item xs={12} md={6} lg={6} paddingX="15px" minHeight="500px" height="85vh" sx={{overflowY:"scroll"}} marginBottom="10px">
                 <Box marginBottom="10px">
                     <Tabs value={tab} onChange={handleTabChange} aria-label="basic tabs example">
                         <Tab label="Description" />
@@ -44,7 +44,7 @@ function ProblemPage(){
                     <SubmissionTable problemId={Number(id)} />
                 }
             </Grid>
-            <Grid item xs={12} md={6} lg={6} minHeight="500px" height="90vh">
+            <Grid item xs={12} md={6} lg={6} minHeight="500px" height="85vh">
                 <CodeEditor problemId={Number(id)}/>
             </Grid>
       </Grid>

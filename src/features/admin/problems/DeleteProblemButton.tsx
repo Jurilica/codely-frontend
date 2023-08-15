@@ -24,7 +24,7 @@ function DeleteProblemButton({problem, variant, shouldNavigate = false}:DeletePr
         archiveProblem(problem.id.toString());
         handleCloseModal();
         if(shouldNavigate){
-            navigate("/problems");
+            navigate("/admin/problems");
         }
     };
 

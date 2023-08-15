@@ -23,7 +23,7 @@ function AddProblemForm({handleClose}:CreateProblemFormProps) {
 
     useEffect(() => {
         if(result.isSuccess) {
-            navigate(`/problems/${result.data.problemId}`);
+            navigate(`/admin/problems/${result.data.problemId}`);
             toast.success("Problem added");
             handleClose();
         }

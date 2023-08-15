@@ -6,19 +6,24 @@ import UserProblemPage from './features/user/problems/ProblemPage';
 import LoginPage from './features/shared/auth/LoginPage';
 import RegistrationPage from './features/shared/auth/RegistrationPage';
 import './app.css';
+import RequireAuth from './features/shared/auth/RequireAuth';
+import Layout from './components/layout/Layout';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage/>} />
-        <Route path="/login" element={<LoginPage/>} />
-        <Route path="/register" element={<RegistrationPage/>} />
-        <Route path="/problems" element={<UserProblemsPage/>} />
-        <Route path="/problems/:id" element={<UserProblemPage/>} />
-
-        <Route path="/admin/problems" element={<AdminProblemsPage/>} />
-        <Route path="/admin/problems/:id" element={<EditProblemPage/>} />
+        <Route element={<Layout/>}>
+          <Route path="/" element={<LoginPage/>} />
+          <Route path="/login" element={<LoginPage/>} />
+          <Route path="/register" element={<RegistrationPage/>} />
+          <Route element={<RequireAuth/>}>
+            <Route path="/problems" element={<UserProblemsPage/>} />
+            <Route path="/problems/:id" element={<UserProblemPage/>} />
+            <Route path="/admin/problems" element={<AdminProblemsPage/>} />
+            <Route path="/admin/problems/:id" element={<EditProblemPage/>} />
+          </Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

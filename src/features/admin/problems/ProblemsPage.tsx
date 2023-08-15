@@ -8,7 +8,7 @@ function ProblemsPage() {
     const {data, isLoading, isSuccess} = useGetProblemsQuery();
 
     return (
-        <Grid item xs={12} md={7} lg={8}>
+        <Grid item>
             <Loader isLoading={isLoading}/>
             <Grid container alignItems="center" justifyContent="space-between">
                 <Grid item>
