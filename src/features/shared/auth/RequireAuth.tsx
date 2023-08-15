@@ -1,12 +1,12 @@
 import { useLocation, Navigate, Outlet } from 'react-router-dom';
-import { getToken } from '../../../utils/storageHelpers';
+import { useAppSelector } from '../../../app/hooks';
 
 function RequireAuth() {
-    const token = getToken() !== undefined;
+    const isLoggedIn = useAppSelector(state => state.auth.isAuthenticated);
     const location = useLocation();
 
     return (
-        token
+        isLoggedIn
             ? <Outlet />
             : <Navigate to="/login" state={{ from: location }} replace />
     );

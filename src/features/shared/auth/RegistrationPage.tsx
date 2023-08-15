@@ -7,6 +7,8 @@ import { setUserLocalStorageData } from "../../../utils/storageHelpers";
 import AuthContainer from "./AuthContainer";
 import { RegisterRequest, useRegisterMutation } from "./authApiSlice";
 import { getInitialRoute } from "../../../utils/navigateHelper";
+import { useAppDisptach } from "../../../app/hooks";
+import { authenticate } from "./authSlice";
 
 interface RegistrationFormData {
     email: string;
@@ -21,6 +23,7 @@ const initalValues: RegistrationFormData = {
 };
 
 function RegistrationPage() {
+    const dispatch = useAppDisptach();
     const [register, result] = useRegisterMutation();
     const navigate = useNavigate();
 
@@ -31,7 +34,7 @@ function RegistrationPage() {
 
     useEffect(() => {
         if(result.isSuccess) {
-            setUserLocalStorageData(result.data);
+            dispatch(authenticate(result.data));
             navigate(getInitialRoute());
         }
     },[result.isSuccess, result.data, navigate]);

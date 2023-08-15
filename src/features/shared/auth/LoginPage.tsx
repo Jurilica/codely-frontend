@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { setUserLocalStorageData } from "../../../utils/storageHelpers";
 import AuthContainer from "./AuthContainer";
 import { getInitialRoute } from "../../../utils/navigateHelper";
+import { useAppDisptach } from "../../../app/hooks";
+import { authenticate } from "./authSlice";
 
 interface LoginFormData {
     username: string;
@@ -19,6 +21,7 @@ const initalValues: LoginFormData = {
 };
 
 function LoginPage() {
+    const dispatch = useAppDisptach();
     const [login, result] = useLoginMutation();
     const navigate = useNavigate();
 
@@ -29,7 +32,7 @@ function LoginPage() {
 
     useEffect(() => {
         if(result.isSuccess) {
-            setUserLocalStorageData(result.data);
+            dispatch(authenticate(result.data));
             navigate(getInitialRoute());
         }
 

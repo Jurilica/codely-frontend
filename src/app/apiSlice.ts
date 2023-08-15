@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import { RefreshTokenRequest } from '../features/shared/auth/authApiSlice';
 import { Mutex } from 'async-mutex';
 import { getRefreshToken, getToken, removeUserLocalStorageData, setUserLocalStorageData } from '../utils/storageHelpers';
+import { authenticate, logOut } from '../features/shared/auth/authSlice';
 
 const API_URL = "https://localhost:44395/";
 
@@ -54,11 +55,11 @@ export const baseQueryWithErrorAndReauthHandling: BaseQueryFn<
         
                 if (refreshResult.data) {
                     // store the new token
-                    setUserLocalStorageData(refreshResult.data);
+                    api.dispatch(authenticate(refreshResult.data));
                     // retry the initial query
                     result = await baseQuery(args, api, extraOptions);
                 } else {
-                    removeUserLocalStorageData();
+                    api.dispatch(logOut());
                 }
             }finally {
                 // release must be called once the mutex should be released again.
