@@ -1,5 +1,4 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { codeTemplate } from "../../../utils/codeEditorHelpers";
 import { ProgrammingLanguage } from "../../../app/enums";
 
 interface CodeEditorState {
@@ -9,7 +8,7 @@ interface CodeEditorState {
 
 const initialState: CodeEditorState = {
     programmingLanguage: ProgrammingLanguage.C,
-    code: codeTemplate(ProgrammingLanguage.C)
+    code: ""
 };
 
 const codeEditorSlice = createSlice({
@@ -22,12 +21,12 @@ const codeEditorSlice = createSlice({
         setCode: (state, action: PayloadAction<string>) => {
             state.code = action.payload;
         },
-        setDefaultCode: (state) => {
-            state.code = codeTemplate(state.programmingLanguage);
+        resetCodeEditor: (state) => {
+            state.code = "";
         }
     }
 });
 
-export const { setProgrammingLanguage, setCode, setDefaultCode } = codeEditorSlice.actions;
+export const { setProgrammingLanguage, setCode, resetCodeEditor } = codeEditorSlice.actions;
 
 export default codeEditorSlice.reducer;

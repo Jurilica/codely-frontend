@@ -17,7 +17,7 @@ function SubmissionRow({row}:SubmissionRowProps) {
     }
 
     return (
-        <TableRow hover tabIndex={-1} key={row.dateTime} onClick={() => handleClick(row.answer, row.programmingLanguage)}>
+        <TableRow hover tabIndex={-1} onClick={() => handleClick(row.answer, row.programmingLanguage)}>
             <TableCell align="left">
                 {row.problemSubmissionStatus}
             </TableCell>

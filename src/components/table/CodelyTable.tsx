@@ -59,11 +59,11 @@ function CodelyTable({columns, data, tableType,sx, rowsPerPageOptions, initalNum
                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                         .map((row) => {
                             switch(tableType){
-                                case TableType.AdminExample : return <ExampleRow row={row}/>;
-                                case TableType.AdminProblem : return <AdminProblemRow row={row}/>;
-                                case TableType.AdminTestCase : return <TestCaseRow row={row}/>;
-                                case TableType.UserProblem : return <UserProblemRow row={row}/>;
-                                case TableType.UserSubmission : return <SubmissionRow row={row}/>;
+                                case TableType.AdminExample : return <ExampleRow row={row} key={row.id}/>;
+                                case TableType.AdminProblem : return <AdminProblemRow row={row} key={row.id}/>;
+                                case TableType.AdminTestCase : return <TestCaseRow row={row} key={row.id}/>;
+                                case TableType.UserProblem : return <UserProblemRow row={row} key={row.id}/>;
+                                case TableType.UserSubmission : return <SubmissionRow row={row} key={row.dateTime}/>;
                             }
                             return <></>;
                         })}

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import ProblemDescription from "./ProblemDescription";
 import ExampleContainer from "../examples/ExampleContainer";
 import { useAppDisptach } from "../../../app/hooks";
-import { setDefaultCode } from "../codeEditor/codeEditorSlice";
+import { resetCodeEditor } from "../codeEditor/codeEditorSlice";
 import SubmissionTable from "../submission/SubmissionTable";
 
 function ProblemPage(){
@@ -22,8 +22,8 @@ function ProblemPage(){
     };
 
     useEffect(() => {
-        dispatch(setDefaultCode());
-    },[])
+        dispatch(resetCodeEditor());
+    },[dispatch])
 
     return (
         <Grid container alignItems="stretch" height="100%">

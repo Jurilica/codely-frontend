@@ -2,7 +2,7 @@ import { FormControl, InputLabel, MenuItem, Select, SelectChangeEvent } from "@m
 import { useSelector } from "react-redux";
 import { RootState } from "../../../app/store";
 import { useAppDisptach } from "../../../app/hooks";
-import { setDefaultCode, setProgrammingLanguage } from "./codeEditorSlice";
+import { setProgrammingLanguage } from "./codeEditorSlice";
 import { ProgrammingLanguage } from "../../../app/enums";
 
 function LanguageSelector(){
@@ -13,7 +13,6 @@ function LanguageSelector(){
         let value = event.target.value as string;
         let selectedLanguage: ProgrammingLanguage = ProgrammingLanguage[value as keyof typeof ProgrammingLanguage];
         dispatch(setProgrammingLanguage(selectedLanguage));
-        dispatch(setDefaultCode());
     };
 
     const languageValues = Object.values(ProgrammingLanguage);

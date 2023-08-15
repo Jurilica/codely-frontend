@@ -13,7 +13,7 @@ interface ProblemRowData {
 
 function ProblemsTable({row}:ProblemRowData) {
     return (
-        <TableRow hover tabIndex={-1} key={row.id}>
+        <TableRow hover tabIndex={-1}>
             <TableCell component="th" scope="row" align="left">
                 <Link color="secondary" component={RouterLink} to={`/admin/problems/${row.id}`} style={{textDecoration: "none"}}>
                     {row.id}

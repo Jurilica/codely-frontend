@@ -9,7 +9,7 @@ interface TestCaseRowProps {
 } 
 function TestCaseRow({row}: TestCaseRowProps) {
   return (
-    <TableRow hover tabIndex={-1} key={row.id}>
+    <TableRow hover tabIndex={-1}>
         <TableCell  style={{ maxWidth:100, overflow: "hidden"}}>
             {row.id}
         </TableCell>
