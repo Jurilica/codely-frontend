@@ -21,6 +21,9 @@ function ProblemRow({row}:ProblemRowProps) {
             <TableCell align="left">
                 {row.problemSubmissionStatus}
             </TableCell>
+            <TableCell align="left">
+                {row.difficulty}
+            </TableCell>
         </TableRow>
     );
 }

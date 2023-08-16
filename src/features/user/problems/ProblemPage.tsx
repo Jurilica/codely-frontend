@@ -37,7 +37,7 @@ function ProblemPage(){
                 </Box>
                 {tab === 0 &&
                     <>
-                        <ProblemDescription title={data?.problem.title ?? ""} description={data?.problem.description ?? ""} />
+                        <ProblemDescription title={data?.problem.title ?? ""} description={data?.problem.description ?? ""} difficulty={data?.problem.difficulty ?? ""}/>
                         <ExampleContainer examples={data?.problem.examples ?? []}/>
                     </>}
                 {tab === 1 &&

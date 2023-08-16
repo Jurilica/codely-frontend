@@ -4,7 +4,8 @@ import CodelyTable, { TableType } from "../../../components/table/CodelyTable";
 
 const columns : Column[] = [
     {id:"1", label: "Title"},
-    {id:"2", label: "Status"}
+    {id:"2", label: "Status"},
+    {id:"3", label: "Difficulty"}
 ];
 
 interface ProblemsTableData {

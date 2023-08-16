@@ -1,5 +1,5 @@
 import { apiSlice } from "../../../app/apiSlice";
-import { ProblemSubmissionStatus } from "../../../app/enums";
+import { ProblemDifficulty, ProblemSubmissionStatus } from "../../../app/enums";
 
 export const problemsApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => {
@@ -34,6 +34,7 @@ export interface GetProblemsData {
     id: number;
     title: string;
     problemSubmissionStatus: ProblemSubmissionStatus;
+    difficulty: ProblemDifficulty;
 }
 
 export interface GetProblemResponse {
@@ -45,6 +46,7 @@ export interface GetProblemData {
     title: string;
     description: string;
     problemSubmissionStatus: ProblemSubmissionStatus;
+    difficulty: ProblemDifficulty;
     examples: ExampleData[];
 }
 
