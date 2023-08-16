@@ -18,15 +18,18 @@ function EditProblemPage() {
             <Loader isLoading={isLoading} />
             {isSuccess && 
                 <>
-                    <Grid item lg={7}>
+                    <Grid item lg={6}>
                         <Grid container direction="column" spacing={2} paddingX="10px">
                             <Grid container direction="row" justifyContent="space-between">                               
                                 <Typography variant="h3" component="h3" fontWeight="bold" fontSize="2.5rem">{data?.problem.id}. {data?.problem.title}</Typography>
                             </Grid>
                             <Grid item marginTop="10px">
-                                <ProblemStatusComponent status={data.problem.problemStatus} fontWeight="medium" fontSize="1.3rem"/>
+                                <Typography fontWeight="bold">{data.problem.difficulty}</Typography>
                             </Grid>
-                            <Grid item height="410px" overflow="scroll">
+                            <Grid item>
+                                <ProblemStatusComponent status={data.problem.problemStatus} fontWeight="bold"/>
+                            </Grid>
+                            <Grid item height="380px" overflow="scroll">
                                 <Typography color="text.secondary" fontSize="1.2rem"  whiteSpace="pre-line">
                                     {data?.problem.description}
                                 </Typography>
@@ -44,7 +47,7 @@ function EditProblemPage() {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item lg={5}>
+                    <Grid item lg={6}>
                         <TestCaseContainer testCases={data?.problem.testCases ?? []} problemId={Number(id)} />
                     </Grid>
                     <Grid item xs={12}>

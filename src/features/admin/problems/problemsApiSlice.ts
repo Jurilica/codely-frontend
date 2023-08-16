@@ -1,4 +1,5 @@
 import { apiSlice } from "../../../app/apiSlice";
+import { ProblemDifficulty } from "../../../app/enums";
 
 export const problemsApiSlice = apiSlice.injectEndpoints({
     endpoints(builder) {
@@ -70,6 +71,7 @@ export const {
 export interface CreateProblemRequest {
     title: string;
     description: string;
+    difficulty: ProblemDifficulty;
 }
 
 export interface CreateProblemResponse {
@@ -80,6 +82,7 @@ export interface UpdateProblemRequest {
     problemId: number;
     title: string;
     description: string;
+    difficulty: ProblemDifficulty;
 }
 
 export interface PublishProblemResponse {
@@ -89,8 +92,6 @@ export interface UnpublishProblemResponse {
 }
 
 export interface UpdateProblemResponse {
-    title: string;
-    description: string;
 }
 
 export interface GetProblemsResponse {
@@ -102,6 +103,7 @@ export interface GetProblemsData {
     title: string;
     description: string;
     problemStatus: ProblemStatus;
+    difficulty: ProblemDifficulty;
 }
 
 export interface GetProblemResponse {
@@ -113,6 +115,7 @@ export interface GetProblemData {
     title: string;
     description: string;
     problemStatus: ProblemStatus;
+    difficulty: ProblemDifficulty;
     examples: ExampleData[];
     testCases: TestCaseData[];
 }

@@ -1,10 +1,13 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, InputLabel, MenuItem, Select } from "@mui/material";
 import { Field, Form, Formik } from "formik";
 import CodelyTextField from "../../../components/form/CodelyTextField";
+import { ProblemDifficulty } from "../../../app/enums";
+import CodelySelectField from "../../../components/form/CodelySelectField";
 
 export interface ProblemData {
     title: string;
     description: string;
+    difficulty: ProblemDifficulty;
 }
 
 interface ProblemFormProps {
@@ -40,6 +43,18 @@ function ProblemForm({handleSubmit, initialValues}:ProblemFormProps) {
                                     rowsNumbers={10}
                                     component={CodelyTextField}
                                 />
+                            </Grid>
+                            <Grid item>
+                                <Field 
+                                    name="difficulty"
+                                    label="Difficulty"
+                                    isFullWidth={true}
+                                    component={CodelySelectField}
+                                >
+                                    <MenuItem value={ProblemDifficulty.Easy}>{ProblemDifficulty.Easy}</MenuItem>
+                                    <MenuItem value={ProblemDifficulty.Medium}>{ProblemDifficulty.Medium}</MenuItem>
+                                    <MenuItem value={ProblemDifficulty.Hard}>{ProblemDifficulty.Hard}</MenuItem>
+                                </Field>
                             </Grid>
                             <Grid item>
                                 <Button type="submit">Submit</Button>

@@ -4,6 +4,7 @@ import ProblemForm, { ProblemData } from './ProblemForm';
 import { toast } from 'react-toastify';
 import { Grid, Typography } from '@mui/material';
 import { CreateProblemRequest, useAddProblemMutation } from './problemsApiSlice';
+import { ProblemDifficulty } from '../../../app/enums';
 
 interface CreateProblemFormProps {
     handleClose: () => void;
@@ -41,7 +42,7 @@ function AddProblemForm({handleClose}:CreateProblemFormProps) {
                 <Typography variant="h4" component="h4">Create problem</Typography>
             </Grid>
             <Grid item>
-                <ProblemForm handleSubmit={handleSubmit} initialValues={{title:"", description:""}} />
+                <ProblemForm handleSubmit={handleSubmit} initialValues={{title:"", description:"", difficulty: ProblemDifficulty.Easy}} />
             </Grid>
         </Grid>
     );

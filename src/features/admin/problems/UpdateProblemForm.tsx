@@ -40,7 +40,7 @@ function UpdateProblemForm({problem, handleClose}:UpdateProblemFormProps) {
                 <Typography variant="h4" component="h4">Update problem</Typography>
             </Grid>
             <Grid item>
-                <ProblemForm handleSubmit={handleSubmit} initialValues={{title:problem.title, description:problem.description}} />
+                <ProblemForm handleSubmit={handleSubmit} initialValues={{title:problem.title, description:problem.description, difficulty: problem.difficulty}} />
             </Grid>
         </Grid>
     );

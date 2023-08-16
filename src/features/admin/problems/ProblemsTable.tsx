@@ -6,9 +6,10 @@ const columns : Column[] = [
     {id:"1", label: "Id"},
     {id:"2", label: "Title"},
     {id:"3", label: "Status"},
-    {id:"4", label: "Edit"},
-    {id:"5", label: "Delete"},
-    {id:"6", label: "Change status"}
+    {id:"4", label: "Difficulty"},
+    {id:"5", label: "Edit"},
+    {id:"6", label: "Delete"},
+    {id:"7", label: "Change status"}
 ];
 
 interface ProblemsTableData {

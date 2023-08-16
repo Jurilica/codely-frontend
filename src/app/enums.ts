@@ -12,3 +12,9 @@ export enum ProgrammingLanguage {
     JavaScript = "JavaScript",
     Java = "Java"
 }
+
+export enum ProblemDifficulty  {
+    Easy = "Easy",
+    Medium = "Medium",
+    Hard = "Hard"
+}
