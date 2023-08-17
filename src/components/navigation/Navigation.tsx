@@ -12,13 +12,23 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { Role } from '../../utils/tokenHelpers';
+import { useEffect, useState } from 'react';
+import { useAppSelector } from '../../app/hooks';
+import { Link } from 'react-router-dom';
 
 interface LinkData{
   name: string;
   href: string;
 }
 
-const pages: LinkData[] = [
+const adminPages: LinkData[] = [
+  {
+    name: "Problems",
+    href: "/admin/problems"
+  }];
+
+const userPages: LinkData[] =   [ 
   {
     name: "Problems",
     href: "/problems"
@@ -27,8 +37,20 @@ const pages: LinkData[] = [
 const settings = ['Account', 'Logout'];
 
 function Navigation() {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const role = useAppSelector(state => state.auth.role);
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [pages, setPages] = useState<LinkData[]>([]);
+
+  useEffect(() => {
+      if(role === Role.Admin) {
+        setPages(adminPages);
+      }
+
+      if(role === Role.User) {
+        setPages(userPages);
+      }
+  },[role])
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -47,25 +69,25 @@ function Navigation() {
 
   return (
     <AppBar position="static">
-      <Container sx={{maxWidth: "1400px"}}>
+      <Container maxWidth={false}  sx={{maxWidth:"1400px"}}>
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Codley
-          </Typography>
+          <Link to="/" style={{ textDecoration: "none", color:"white" }}>
+            <Typography
+              variant="h6"
+              noWrap
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              Codely
+            </Typography>
+          </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -99,47 +121,28 @@ function Navigation() {
               {pages.map((page) => (
                 <MenuItem key={page.name} onClick={handleCloseNavMenu}>
                   <Typography 
-                    textAlign="center" 
-                    href={page.href} 
-                    component="a">
-                      {page.name}
+                    textAlign="center">
+                      <Link to={page.href} style={{textDecoration: "none", color: "inherit"}}>
+                        {page.name}
+                      </Link>
                   </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page.name}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
-                href={page.href}
               >
-                {page.name}
+                <Link to={page.href} style={{textDecoration: "none", color: "inherit"}}>
+                  {page.name}
+                </Link>
               </Button>
             ))}
           </Box>
-
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
