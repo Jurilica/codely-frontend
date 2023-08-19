@@ -5,9 +5,9 @@ import UserProblemsPage from './features/user/problems/ProblemsPage';
 import UserProblemPage from './features/user/problems/ProblemPage';
 import LoginPage from './features/shared/auth/LoginPage';
 import RegistrationPage from './features/shared/auth/RegistrationPage';
-import './app.css';
 import RequireAuth from './features/shared/auth/RequireAuth';
 import Layout from './components/layout/Layout';
+import './app.css';
 
 function App() {
   return (

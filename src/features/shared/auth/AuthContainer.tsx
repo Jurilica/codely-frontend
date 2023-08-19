@@ -12,7 +12,7 @@ interface AuthContainerProps {
 
 function AuthContainer({isLoading, form, link, title}: AuthContainerProps) {
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" maxWidth="xs" sx={{backgroundColor:"white", borderRadius:"15px", boxShadow: 1}}>
             <Loader isLoading= {isLoading} />
             <CssBaseline />
             <Box
@@ -21,6 +21,7 @@ function AuthContainer({isLoading, form, link, title}: AuthContainerProps) {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
+                    padding: "20px"
                 }}
             >
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>

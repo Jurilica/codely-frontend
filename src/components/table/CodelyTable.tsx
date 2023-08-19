@@ -24,7 +24,7 @@ interface CodleyTableProps {
     initalNumberOfRows: number;
 }
 
-function CodelyTable({columns, data, tableType,sx, rowsPerPageOptions, initalNumberOfRows}:CodleyTableProps) {
+function CodelyTable({columns, data, tableType, sx, rowsPerPageOptions, initalNumberOfRows}:CodleyTableProps) {
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(initalNumberOfRows);
   
@@ -48,6 +48,7 @@ function CodelyTable({columns, data, tableType,sx, rowsPerPageOptions, initalNum
                                 key={column.id}
                                 align={column.align}
                                 style={{ minWidth: column.minWidth }}
+                                sx={{backgroundColor:"#F8F9FA"}}
                             >
                             {column.label}
                             </TableCell>
