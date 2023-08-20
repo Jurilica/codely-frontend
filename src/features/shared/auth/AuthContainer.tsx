@@ -12,7 +12,7 @@ interface AuthContainerProps {
 
 function AuthContainer({isLoading, form, link, title}: AuthContainerProps) {
     return (
-        <Container component="main" maxWidth="xs" sx={{backgroundColor:"white", borderRadius:"15px", boxShadow: 1}}>
+        <Container component="main" maxWidth="xs" sx={{backgroundColor:"white", borderRadius:"15px", boxShadow: 3}}>
             <Loader isLoading= {isLoading} />
             <CssBaseline />
             <Box

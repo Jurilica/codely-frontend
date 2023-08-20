@@ -21,9 +21,9 @@ function ProblemsTable({data}:ProblemsTableData) {
         <CodelyTable columns={columns} 
             data={data} 
             tableType={TableType.AdminProblem} 
-            sx={{height:"760px"}}
-            rowsPerPageOptions={[10, 25, 100]} 
-            initalNumberOfRows={10} />
+            sx={{}}
+            rowsPerPageOptions={[5, 10, 20]} 
+            initalNumberOfRows={5} />
     );
 }
 

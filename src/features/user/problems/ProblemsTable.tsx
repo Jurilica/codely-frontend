@@ -17,7 +17,7 @@ function ProblemsTable({data}:ProblemsTableData) {
         <CodelyTable columns={columns}
             data={data} 
             tableType={TableType.UserProblem} 
-            sx={{ height: '760px'}} 
+            sx={{}} 
             rowsPerPageOptions={[10, 25, 100]} 
             initalNumberOfRows={10} />
     );

@@ -39,7 +39,7 @@ function CodelyTable({columns, data, tableType, sx, rowsPerPageOptions, initalNu
 
     return (
         <Paper sx={{ width: '100%', overflow:'hidden'}}>
-            <TableContainer sx={sx}>
+            <TableContainer sx={{...sx, minHeight:"410px"}}>
                 <Table stickyHeader aria-label="sticky table">
                 <TableHead>
                     <TableRow>
@@ -48,7 +48,7 @@ function CodelyTable({columns, data, tableType, sx, rowsPerPageOptions, initalNu
                                 key={column.id}
                                 align={column.align}
                                 style={{ minWidth: column.minWidth }}
-                                sx={{backgroundColor:"#F8F9FA"}}
+                                sx={{backgroundColor:"#ECECEC"}}
                             >
                             {column.label}
                             </TableCell>

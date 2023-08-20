@@ -61,7 +61,7 @@ function CodeEditor({problemId}: CodeEditorProps){
                     value={code}
                     theme={githubDark}
                     minHeight="400px"
-                    height="calc(85vh - 96px)"
+                    height="calc(80vh - 96px)"
                     placeholder="Write your code here"
                     extensions={[codeMirrorLanguage(programmingLanguage)]}
                     onChange={(value) => { handleCodeChange(value);}}
