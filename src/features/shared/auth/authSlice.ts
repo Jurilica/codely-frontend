@@ -5,11 +5,13 @@ import { Role, getUser } from "../../../utils/tokenHelpers";
 interface AuthState {
     isAuthenticated: boolean;
     role: Role | null;
+    username: string | null;
 }
 
 const initialState: AuthState = {
     isAuthenticated: getToken() !== undefined,
-    role: getToken() !== undefined ? getUser().userRole : null
+    role: getToken() !== undefined ? getUser().userRole : null,
+    username: getToken() !== undefined ? getUser().username : null
 };
 
 const authSlice = createSlice({
@@ -20,11 +22,13 @@ const authSlice = createSlice({
             state.isAuthenticated = true;
             setUserLocalStorageData(action.payload);
             state.role = getUser().userRole;
+            state.username = getUser().username;
         },
         logOut: (state) => {
             state.isAuthenticated = false;
             removeUserLocalStorageData();
             state.role = null;
+            state.username = null;
         }
     }
 });

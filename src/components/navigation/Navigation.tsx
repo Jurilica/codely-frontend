@@ -11,11 +11,12 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
-import { Role } from '../../utils/tokenHelpers';
+import { Role, getUser } from '../../utils/tokenHelpers';
 import { useEffect, useState } from 'react';
-import { useAppSelector } from '../../app/hooks';
-import { Link } from 'react-router-dom';
+import { useAppDisptach, useAppSelector } from '../../app/hooks';
+import { Link, useNavigate } from 'react-router-dom';
+import CodelyAvatar from '../avatar/CodelyAvatar';
+import { logOut } from '../../features/shared/auth/authSlice';
 
 interface LinkData{
   name: string;
@@ -34,14 +35,15 @@ const userPages: LinkData[] =   [
     href: "/problems"
   }];
 
-const settings = ['Account', 'Logout'];
-
 function Navigation() {
+  const dispatch = useAppDisptach();
+
   const role = useAppSelector(state => state.auth.role);
   const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [pages, setPages] = useState<LinkData[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
       if(role === Role.Admin) {
@@ -50,6 +52,10 @@ function Navigation() {
 
       if(role === Role.User) {
         setPages(userPages);
+      }
+
+      if(role === null) {
+        setPages([]);
       }
   },[role])
 
@@ -66,6 +72,11 @@ function Navigation() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleLogoutClick = () => {
+    dispatch(logOut());
+    navigate("/login");
   };
 
   return (
@@ -149,7 +160,7 @@ function Navigation() {
             <Box sx={{ flexGrow: 0 }}>
              <Tooltip title="Open settings">
                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                 <CodelyAvatar/>
                </IconButton>
              </Tooltip>
              <Menu
@@ -168,11 +179,9 @@ function Navigation() {
                open={Boolean(anchorElUser)}
                onClose={handleCloseUserMenu}
              >
-               {settings.map((setting) => (
-                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                   <Typography textAlign="center">{setting}</Typography>
-                 </MenuItem>
-               ))}
+                <MenuItem  onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center" onClick={handleLogoutClick}>Log Out</Typography>
+                </MenuItem>
              </Menu>
            </Box>
           }
