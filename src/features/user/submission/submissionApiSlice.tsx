@@ -17,7 +17,7 @@ export const submissionApiSlice = apiSlice.injectEndpoints({
                     method: "POST",
                     body: request
                 }),
-                invalidatesTags: ['UserSubmission']
+                invalidatesTags: ['UserSubmission', 'UserLeaderboard']
             })
         }
     }

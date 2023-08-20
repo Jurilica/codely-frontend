@@ -31,8 +31,11 @@ function stringAvatar(name: string) {
     };
 }
 
-const CodelyAvatar = () => {
-    const username = useAppSelector(state => state.auth.username);
+interface CodelyAvatarProps {
+    username: string | null;
+}
+
+const CodelyAvatar = ({username}: CodelyAvatarProps) => {
 
     return (
         <>

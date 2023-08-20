@@ -7,6 +7,7 @@ import LoginPage from './features/shared/auth/LoginPage';
 import RegistrationPage from './features/shared/auth/RegistrationPage';
 import RequireAuth from './features/shared/auth/RequireAuth';
 import Layout from './components/layout/Layout';
+import LeaderboardPage from './features/user/leaderboard/LeaderboardPage';
 import './app.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/register" element={<RegistrationPage/>} />
           <Route element={<RequireAuth/>}>
             <Route path="/problems" element={<UserProblemsPage/>} />
+            <Route path="/leaderboard" element={<LeaderboardPage/>} />
             <Route path="/problems/:id" element={<UserProblemPage/>} />
             <Route path="/admin/problems" element={<AdminProblemsPage/>} />
             <Route path="/admin/problems/:id" element={<EditProblemPage/>} />

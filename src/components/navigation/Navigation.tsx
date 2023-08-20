@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
@@ -33,6 +32,10 @@ const userPages: LinkData[] =   [
   {
     name: "Problems",
     href: "/problems"
+  },
+  {
+    name: "Leaderboard",
+    href: "/leaderboard"
   }];
 
 function Navigation() {
@@ -40,6 +43,7 @@ function Navigation() {
 
   const role = useAppSelector(state => state.auth.role);
   const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
+  const username = useAppSelector(state => state.auth.username);
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
   const [pages, setPages] = useState<LinkData[]>([]);
@@ -160,7 +164,7 @@ function Navigation() {
             <Box sx={{ flexGrow: 0 }}>
              <Tooltip title="Open settings">
                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                 <CodelyAvatar/>
+                 <CodelyAvatar username={username}/>
                </IconButton>
              </Tooltip>
              <Menu
