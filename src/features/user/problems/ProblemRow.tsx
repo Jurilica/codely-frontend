@@ -1,6 +1,8 @@
 import { GetProblemsData } from "./problemsApiSlice";
 import { TableCell, TableRow } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import DifficultyPill from "../../../components/difficulty/DifficultyPill";
+import ProblemSubmissionStatusPill from "../../../components/difficulty/ProblemSubmssionStatusPill";
 
 interface ProblemRowProps {
     row: GetProblemsData;
@@ -19,10 +21,10 @@ function ProblemRow({row}:ProblemRowProps) {
                 {row.title}
             </TableCell>
             <TableCell align="left">
-                {row.problemSubmissionStatus}
+                <ProblemSubmissionStatusPill status={row.problemSubmissionStatus} />
             </TableCell>
             <TableCell align="left">
-                {row.difficulty}
+                <DifficultyPill difficulty={row.difficulty} />
             </TableCell>
         </TableRow>
     );

@@ -8,6 +8,7 @@ import ExampleContainer from '../example/ExampleContainer';
 import EditProblemButton from './EditProblemButton';
 import DeleteProblemButton from './DeleteProblemButton';
 import ChangeProblemStatusButton from './ChangeProblemStatusButton';
+import DifficultyPill from '../../../components/difficulty/DifficultyPill';
 
 function EditProblemPage() {
     let {id} = useParams();
@@ -24,7 +25,7 @@ function EditProblemPage() {
                                 <Typography variant="h3" component="h3" fontWeight="bold" fontSize="2.5rem">{data?.problem.id}. {data?.problem.title}</Typography>
                             </Grid>
                             <Grid item marginTop="10px">
-                                <Typography fontWeight="bold">{data.problem.difficulty}</Typography>
+                                <DifficultyPill difficulty={data?.problem.difficulty} />
                             </Grid>
                             <Grid item>
                                 <ProblemStatusComponent status={data.problem.problemStatus} fontWeight="bold"/>

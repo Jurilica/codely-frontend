@@ -23,7 +23,7 @@ function SubmissionsTable({problemId}:SubmissionsTableProps ){
             data={data?.submissions ?? []}
             columns={columns}
             tableType={TableType.UserSubmission}
-            sx={{height:"600px"}} 
+            sx={{maxHeight:"600px"}} 
             rowsPerPageOptions={[10,25,50]} initalNumberOfRows={10} />
     );
 };

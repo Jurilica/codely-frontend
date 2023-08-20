@@ -1,8 +1,10 @@
-import { Container, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
+import DifficultyPill from "../../../components/difficulty/DifficultyPill";
+import { ProblemDifficulty } from "../../../app/enums";
 
 interface ProblemDescriptionProps {
     title: string;
-    difficulty: string;
+    difficulty: ProblemDifficulty;
     description: string;
 }
 
@@ -19,15 +21,9 @@ function ProblemDescription({title,difficulty, description}: ProblemDescriptionP
                 >
                 {title}
             </Typography>
-            <Typography 
-                variant="h1" 
-                color="text.primary" 
-                component="h3"
-                fontWeight="bold"
-                fontSize="1.2rem"
-                gutterBottom >
-                {difficulty}
-            </Typography>
+            <Box marginBottom="10px">
+                <DifficultyPill difficulty={difficulty} />
+            </Box>
             <Typography 
                 variant="h5" 
                 color="text.secondary" 

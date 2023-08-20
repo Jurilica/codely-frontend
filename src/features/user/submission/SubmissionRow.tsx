@@ -3,6 +3,7 @@ import { GetSubmissionData } from "./submissionApiSlice";
 import { useAppDisptach } from "../../../app/hooks";
 import { setCode, setProgrammingLanguage } from "../codeEditor/codeEditorSlice";
 import { ProgrammingLanguage } from "../../../app/enums";
+import ProblemSubmissionStatusPill from "../../../components/difficulty/ProblemSubmssionStatusPill";
 
 interface SubmissionRowProps {
     row: GetSubmissionData;
@@ -19,7 +20,7 @@ function SubmissionRow({row}:SubmissionRowProps) {
     return (
         <TableRow hover tabIndex={-1} onClick={() => handleClick(row.answer, row.programmingLanguage)}>
             <TableCell align="left">
-                {row.problemSubmissionStatus}
+                <ProblemSubmissionStatusPill status={row.problemSubmissionStatus} />
             </TableCell>
             <TableCell align="left">
                 {row.programmingLanguage}

@@ -5,6 +5,7 @@ import ProblemStatusComponent  from "./ProblemStatusComponent";
 import EditProblemButton from "./EditProblemButton";
 import DeleteProblemButton from "./DeleteProblemButton";
 import ChangeProblemStatusButton from "./ChangeProblemStatusButton";
+import DifficultyPill from "../../../components/difficulty/DifficultyPill";
 
 interface ProblemRowData {
     row: GetProblemsData;
@@ -25,7 +26,7 @@ function ProblemsTable({row}:ProblemRowData) {
                 <ProblemStatusComponent status={row.problemStatus}/>
             </TableCell>
             <TableCell align="left">
-                {row.difficulty}
+                <DifficultyPill difficulty={row.difficulty}/>
             </TableCell>
             <TableCell align="left">
                 <EditProblemButton problem={row} variant="text"/>
