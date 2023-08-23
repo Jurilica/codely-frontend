@@ -9,10 +9,10 @@ interface LeaderboardRowProps {
 
 function LeaderboardRow({row}:LeaderboardRowProps) {
     const username = useAppSelector(state => state.auth.username);
-    const backgoundColor = username === row.username ? "#ADD8E6" : "white";
+    const backgroundColor = username === row.username ? "#F5F5F5" : "white";
 
     return (
-        <TableRow hover tabIndex={-1} key={row.username} sx={{backgroundColor:{backgoundColor}}}>
+        <TableRow hover tabIndex={-1} key={row.username} sx={{backgroundColor:{backgroundColor}}}>
              <TableCell align="left">
                 {row.position}
             </TableCell>
