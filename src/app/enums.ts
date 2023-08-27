@@ -18,3 +18,8 @@ export enum ProblemDifficulty  {
     Medium = "Medium",
     Hard = "Hard"
 }
+
+export enum UserStatus {
+    Active = "Active",
+    Banned = "Banned"
+}

@@ -2,7 +2,7 @@ import { BaseQueryFn, FetchArgs, FetchBaseQueryError, createApi, fetchBaseQuery 
 import { toast } from 'react-toastify';
 import { RefreshTokenRequest } from '../features/shared/auth/authApiSlice';
 import { Mutex } from 'async-mutex';
-import { getRefreshToken, getToken, removeUserLocalStorageData, setUserLocalStorageData } from '../utils/storageHelpers';
+import { getRefreshToken, getToken } from '../utils/storageHelpers';
 import { authenticate, logOut } from '../features/shared/auth/authSlice';
 
 const API_URL = "https://localhost:44395/";
@@ -92,6 +92,6 @@ export const baseQueryWithErrorAndReauthHandling: BaseQueryFn<
 
 export const apiSlice = createApi({
     baseQuery: baseQueryWithErrorAndReauthHandling,
-    tagTypes: ['AdminProblem', 'AdminTestCase', 'AdminExample', 'UserProblem', 'UserSubmission', 'UserLeaderboard'],
+    tagTypes: ['AdminProblem', 'AdminTestCase', 'AdminExample','AdminUser', 'UserProblem', 'UserSubmission', 'UserLeaderboard'],
     endpoints: () => ({})
 });

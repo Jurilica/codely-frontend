@@ -9,6 +9,7 @@ import RequireAuth from './features/shared/auth/RequireAuth';
 import Layout from './components/layout/Layout';
 import LeaderboardPage from './features/user/leaderboard/LeaderboardPage';
 import './app.css';
+import UsersPage from './features/admin/users/UsersPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/problems/:id" element={<UserProblemPage/>} />
             <Route path="/admin/problems" element={<AdminProblemsPage/>} />
             <Route path="/admin/problems/:id" element={<EditProblemPage/>} />
+            <Route path="/admin/users" element={<UsersPage />} />
           </Route>
         </Route>
       </Routes>

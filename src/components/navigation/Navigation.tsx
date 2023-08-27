@@ -26,6 +26,10 @@ const adminPages: LinkData[] = [
   {
     name: "Problems",
     href: "/admin/problems"
+  },
+  {
+    name: "Users",
+    href: "/admin/users"
   }];
 
 const userPages: LinkData[] =   [ 

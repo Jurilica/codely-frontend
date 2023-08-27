@@ -7,11 +7,13 @@ import AdminProblemRow from "../../features/admin/problems/ProblemRow";
 import TestCaseRow from "../../features/admin/testcase/TestCaseRow";
 import UserProblemRow from "../../features/user/problems/ProblemRow";
 import LeaderboardRow from "../../features/user/leaderboard/LeaderboardRow";
+import UserRow from "../../features/admin/users/UserRow";
 
 export enum TableType {
     AdminProblem,
     AdminExample,
     AdminTestCase,
+    AdminUsers,
     UserProblem,
     UserSubmission,
     UserLeaderboard
@@ -65,6 +67,7 @@ function CodelyTable({columns, data, tableType, sx, rowsPerPageOptions, initalNu
                                 case TableType.AdminExample : return <ExampleRow row={row} key={row.id}/>;
                                 case TableType.AdminProblem : return <AdminProblemRow row={row} key={row.id}/>;
                                 case TableType.AdminTestCase : return <TestCaseRow row={row} key={row.id}/>;
+                                case TableType.AdminUsers : return <UserRow row={row} key={row.username}/>;
                                 case TableType.UserProblem : return <UserProblemRow row={row} key={row.id}/>;
                                 case TableType.UserSubmission : return <SubmissionRow row={row} key={row.dateTime}/>;
                                 case TableType.UserLeaderboard : return <LeaderboardRow row={row} key={row.username}/>;
