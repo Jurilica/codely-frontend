@@ -28,7 +28,8 @@ function ProblemDescription({title,difficulty, description}: ProblemDescriptionP
                 variant="h5" 
                 color="text.secondary" 
                 component="p"
-                fontSize="1.2rem" >
+                fontSize="1.2rem" 
+                whiteSpace="pre-line">
                 {description}
             </Typography>
       </Container>
